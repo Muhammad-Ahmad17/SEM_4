@@ -1,0 +1,6 @@
+EmployeeID,FirstName,LastName,Email,PhoneNumber,HireDate,JobTitle,Salary,Department
+1,John,Doe,john.doe@example.com,555-1234,2020-01-15,Software Engineer,70000,Engineering
+2,Jane,Smith,jane.smith@example.com,555-5678,2019-03-22,Data Analyst,65000,Data Science
+3,Emily,Jones,emily.jones@example.com,555-8765,2018-07-30,Product Manager,80000,Product
+4,Michael,Brown,michael.brown@example.com,555-4321,2021-11-05,UX Designer,72000,Design
+5,Jessica,Wilson,jessica.wilson@example.com,555-6789,2017-09-12,HR Specialist,60000,Human Resources
