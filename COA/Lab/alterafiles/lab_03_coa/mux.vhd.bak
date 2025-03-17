@@ -1,0 +1,18 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+entity mux is
+    port(
+        D0,D1,D2,D3 : in STD_LOGIC;
+		  S: in STD_LOGIC_VECTOR(1 downto 0);
+        X : out STD_LOGIC
+    );
+end mux;
+
+architecture bhv of mux is
+begin
+    X <= D0 WHEN ("00") ELSE 
+			D1 WHEN ("01") ELSE
+			D2 WHEN ("10") ELSE
+			D3 ;
+end bhv;

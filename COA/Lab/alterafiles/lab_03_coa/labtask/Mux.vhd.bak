@@ -1,0 +1,22 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+entity Mux is
+    port ( mux_inI0, mux_inI1, mux_inI2, mux_inI3 : in STD_LOGIC;
+           mux_Sel : in STD_LOGIC_VECTOR(1 downto 0);
+           mux_outY : out STD_LOGIC);
+end Mux;
+
+architecture bhv of Mux is
+begin
+    process (mux_Sel,  mux_inI0, mux_inI1, mux_inI2, mux_inI3)
+    begin
+        case Sel is
+            when "00" => mux_outY <= mux_inI0;
+            when "01" => mux_outY <= mux_inI1;
+            when "10" => mux_outY <= mux_inI2;
+            when "11" => mux_outY <= mux_inI3;
+            when others => mux_outY <= '0';
+        end case;
+    end process;
+end bhv;

@@ -1,0 +1,14 @@
+include ieee;
+use iee.std_logic_1164.all;
+
+entity orGate is 
+	port (
+		A,B : in std_logic; 
+		X : out std_logic	
+	);
+end orGate;
+
+architecture bhv of orGate is 
+begin 
+	x = A AND B ;
+end bhv;

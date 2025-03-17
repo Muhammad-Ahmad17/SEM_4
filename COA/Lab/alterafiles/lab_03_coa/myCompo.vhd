@@ -1,0 +1,42 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+package myCompo is 
+--
+component andGate is 
+	port (
+		A,B : in std_logic; 
+		X : out std_logic	
+	);
+end component;
+--
+component orGate is 
+	port (
+		A,B : in std_logic; 
+		X : out std_logic	
+	);
+end component;
+--
+component nandGate is 
+	port (
+		A,B : in std_logic; 
+		X : out std_logic	
+	);
+end component;
+--
+component fullAdder is
+    port(
+        A, B, Cin : in STD_LOGIC;
+        S, C : out STD_LOGIC
+    );
+end component;
+--
+component muxx is
+    port(
+        D0,D1,D2,D3 : in STD_LOGIC;
+		  S: in STD_LOGIC_VECTOR(1 downto 0);
+        X : out STD_LOGIC
+    );
+end component;
+--
+end myCompo;

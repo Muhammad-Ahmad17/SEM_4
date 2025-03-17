@@ -1,0 +1,85 @@
+m255
+K3
+13
+cModel Technology
+Z0 dD:\alterafiles\lab_04_coa\task2\simulation\qsim
+vUpDownBinaryCounter
+Z1 !s100 5>jRhN?0haCOLTcUEjlO=2
+Z2 IF=6OST6dLd0^Bg<iQAFB@2
+Z3 Vif^lHHI@OB[TZnchR_;Fe0
+Z4 dD:\alterafiles\lab_04_coa\task2\simulation\qsim
+Z5 w1741854346
+Z6 8UpDownBinaryCounter.vo
+Z7 FUpDownBinaryCounter.vo
+L0 31
+Z8 OV;L;10.1d;51
+r1
+31
+Z9 !s90 -work|work|UpDownBinaryCounter.vo|
+Z10 o-work work -O0
+Z11 n@up@down@binary@counter
+!i10b 1
+!s85 0
+Z12 !s108 1741854347.289000
+Z13 !s107 UpDownBinaryCounter.vo|
+!s101 -O0
+vUpDownBinaryCounter_vlg_check_tst
+!i10b 1
+Z14 !s100 ljS?LiAo_bm37Kz9M`P;P3
+Z15 Io4g`=e0D08BQI7KSIBP]I2
+Z16 V9G[L7D?nV_59<I^6JIYV03
+R4
+Z17 w1741854343
+Z18 8Waveform.vwf.vt
+Z19 FWaveform.vwf.vt
+L0 59
+R8
+r1
+!s85 0
+31
+Z20 !s108 1741854347.413000
+Z21 !s107 Waveform.vwf.vt|
+Z22 !s90 -work|work|Waveform.vwf.vt|
+!s101 -O0
+R10
+Z23 n@up@down@binary@counter_vlg_check_tst
+vUpDownBinaryCounter_vlg_sample_tst
+!i10b 1
+Z24 !s100 jkMd9Gk0jWYZMYfbLZNYJ2
+Z25 IXb;zMj6:G53lmVciQnQD22
+Z26 VD@aDGmgAjJkGnD47^7[0i3
+R4
+R17
+R18
+R19
+L0 29
+R8
+r1
+!s85 0
+31
+R20
+R21
+R22
+!s101 -O0
+R10
+Z27 n@up@down@binary@counter_vlg_sample_tst
+vUpDownBinaryCounter_vlg_vec_tst
+!i10b 1
+!s100 ?X0j@C3UJZ2A_W73gHS?H1
+Io<[4@X>^LOi4NiU6e>R:70
+Z28 VO7WaHA0;87hk;QSoKF58Y0
+R4
+R17
+R18
+R19
+Z29 L0 189
+R8
+r1
+!s85 0
+31
+R20
+R21
+R22
+!s101 -O0
+R10
+Z30 n@up@down@binary@counter_vlg_vec_tst

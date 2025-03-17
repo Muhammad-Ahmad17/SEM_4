@@ -1,0 +1,26 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use WORK.myCompo.ALL;
+
+entity ahm is
+    port(
+        in1,in2,Cin : in std_logic;
+		  selector : in std_logic_vector(1 downto 0);
+		  result,cout : out std_logic;
+    );
+end ahm;
+
+architecture bhv of ahm is
+begin
+
+	U1: andGate port map (in1,in2,result);
+	
+	U2: orGate port map (in1,in2,result);
+	
+	U3: nandGate port map (in1,in2,result);
+	
+	U4: fullAdder port map (in1,in2,Cin,result,cout);
+	
+	U5: mux port map (andGate,orGate,nandGate,fullAdder,selector,result);
+	 
+end bhv;

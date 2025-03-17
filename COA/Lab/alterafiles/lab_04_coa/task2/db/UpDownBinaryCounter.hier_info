@@ -1,0 +1,38 @@
+|UpDownBinaryCounter
+binOut[0] <= myDLatch:U1.Q
+binOut[1] <= myDLatch:U2.Q
+binOut[2] <= myDLatch:U3.Q
+opcode => d[1].OUTPUTSELECT
+opcode => d[2].OUTPUTSELECT
+clk => myDLatch:U1.clk
+clk => myDLatch:U2.clk
+clk => myDLatch:U3.clk
+
+
+|UpDownBinaryCounter|myDLatch:U1
+clk => Q_not~reg0.CLK
+clk => Q~reg0.CLK
+D => Q~reg0.DATAIN
+D => Q_not~reg0.DATAIN
+Q <= Q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Q_not <= Q_not~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|UpDownBinaryCounter|myDLatch:U2
+clk => Q_not~reg0.CLK
+clk => Q~reg0.CLK
+D => Q~reg0.DATAIN
+D => Q_not~reg0.DATAIN
+Q <= Q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Q_not <= Q_not~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|UpDownBinaryCounter|myDLatch:U3
+clk => Q_not~reg0.CLK
+clk => Q~reg0.CLK
+D => Q~reg0.DATAIN
+D => Q_not~reg0.DATAIN
+Q <= Q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Q_not <= Q_not~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+

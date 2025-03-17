@@ -1,0 +1,24 @@
+# do seven_seg.do 
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module seven_seg
+# 
+# Top level modules:
+# 	seven_seg
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module seven_seg_vlg_sample_tst
+# -- Compiling module seven_seg_vlg_check_tst
+# -- Compiling module seven_seg_vlg_vec_tst
+# 
+# Top level modules:
+# 	seven_seg_vlg_vec_tst
+# vsim -L cycloneive_ver -L altera_ver -L altera_mf_ver -L 220model_ver -L sgate -c -voptargs=\"+acc\" -t 1ps -novopt work.seven_seg_vlg_vec_tst 
+# Loading work.seven_seg_vlg_vec_tst
+# Loading work.seven_seg
+# Loading cycloneive_ver.cycloneive_io_obuf
+# Loading cycloneive_ver.cycloneive_io_ibuf
+# Loading cycloneive_ver.cycloneive_lcell_comb
+# Loading work.seven_seg_vlg_sample_tst
+# Loading work.seven_seg_vlg_check_tst
+# Simulation passed !
+# ** Note: $finish    : Waveform.vwf.vt(255)
+#    Time: 1 us  Iteration: 0  Instance: /seven_seg_vlg_vec_tst/tb_out

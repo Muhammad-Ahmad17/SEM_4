@@ -1,0 +1,81 @@
+m255
+K3
+13
+cModel Technology
+Z0 dD:\alterafiles\lab_01_coa\simulation\qsim
+vnandgate
+Z1 !s100 gQ9E>jP<BmDY5jOBTO;NF0
+Z2 IJgk43zWh<CR8:`5_9i5iC2
+Z3 VIdi?H_98?oc[DkO4OBClK1
+Z4 dD:\alterafiles\lab_01_coa\simulation\qsim
+Z5 w1740308896
+Z6 8nandgate.vo
+Z7 Fnandgate.vo
+L0 31
+Z8 OV;L;10.1d;51
+r1
+31
+Z9 !s90 -work|work|nandgate.vo|
+Z10 o-work work -O0
+!i10b 1
+!s85 0
+Z11 !s108 1740308901.637000
+Z12 !s107 nandgate.vo|
+!s101 -O0
+vnandgate_vlg_check_tst
+!i10b 1
+Z13 !s100 _[_oOc^7NoCoZ]GNDKEzD1
+Z14 Ii@XYbK3LF=fmI]kkc0m=H2
+Z15 V5mhP_RI9?`l7zcEO;knEG0
+R4
+Z16 w1740308894
+Z17 8Waveform.vwf.vt
+Z18 FWaveform.vwf.vt
+L0 59
+R8
+r1
+!s85 0
+31
+Z19 !s108 1740308901.854000
+Z20 !s107 Waveform.vwf.vt|
+Z21 !s90 -work|work|Waveform.vwf.vt|
+!s101 -O0
+R10
+vnandgate_vlg_sample_tst
+!i10b 1
+Z22 !s100 O_O31JUD6dWoKlemK59380
+Z23 IooKITO?H@bW@1R;Vdn0LU0
+Z24 VQI6z:e:K4Q=0Q60RP9m_83
+R4
+R16
+R17
+R18
+L0 29
+R8
+r1
+!s85 0
+31
+R19
+R20
+R21
+!s101 -O0
+R10
+vnandgate_vlg_vec_tst
+!i10b 1
+!s100 4k=IfaOUa8A@BQB`[YSk>3
+IR1@;IoMP2FzFUgAMjU9aW3
+Z25 VP0ZdN>fVmQdYClfR_kzc51
+R4
+R16
+R17
+R18
+Z26 L0 154
+R8
+r1
+!s85 0
+31
+R19
+R20
+R21
+!s101 -O0
+R10

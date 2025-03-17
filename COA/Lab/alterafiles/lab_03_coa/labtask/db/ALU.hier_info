@@ -1,0 +1,55 @@
+|ALU
+a => Andgate:U1.and_in1
+a => Orgate:U2.or_in1
+a => Nandgate:U3.nand_in1
+a => Fulladder:U4.adder_inA
+b => Andgate:U1.and_in2
+b => Orgate:U2.or_in2
+b => Nandgate:U3.nand_in2
+b => Fulladder:U4.adder_inB
+Cin => Fulladder:U4.adder_inC
+Sel[0] => Mux:U5.mux_Sel[0]
+Sel[1] => Mux:U5.mux_Sel[1]
+Result <= Mux:U5.mux_outY
+Cout <= Fulladder:U4.adder_outC
+
+
+|ALU|Andgate:U1
+and_in1 => and_out.IN0
+and_in2 => and_out.IN1
+and_out <= and_out.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU|Orgate:U2
+or_in1 => or_out.IN0
+or_in2 => or_out.IN1
+or_out <= or_out.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU|Nandgate:U3
+nand_in1 => nand_out.IN0
+nand_in2 => nand_out.IN1
+nand_out <= nand_out.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU|Fulladder:U4
+adder_inA => adder_outS.IN0
+adder_inA => adder_outC.IN0
+adder_inB => adder_outS.IN1
+adder_inB => adder_outC.IN1
+adder_inC => adder_outS.IN1
+adder_inC => adder_outC.IN1
+adder_outS <= adder_outS.DB_MAX_OUTPUT_PORT_TYPE
+adder_outC <= adder_outC.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ALU|Mux:U5
+mux_inI0 => Mux0.IN0
+mux_inI1 => Mux0.IN1
+mux_inI2 => Mux0.IN2
+mux_inI3 => Mux0.IN3
+mux_Sel[0] => Mux0.IN5
+mux_Sel[1] => Mux0.IN4
+mux_outY <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+
+

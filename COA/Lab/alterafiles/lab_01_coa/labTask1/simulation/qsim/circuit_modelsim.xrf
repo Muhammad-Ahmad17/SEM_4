@@ -1,0 +1,14 @@
+vendor_name = ModelSim
+source_file = 1, D:/alterafiles/lab_01_coa/labTask1/circuit.vhd
+source_file = 1, D:/alterafiles/lab_01_coa/labTask1/Waveform.vwf
+source_file = 1, D:/alterafiles/lab_01_coa/labTask1/db/circuit.cbx.xml
+source_file = 1, c:/altera/13.1/quartus/libraries/vhdl/ieee/prmtvs_b.vhd
+source_file = 1, c:/altera/13.1/quartus/libraries/vhdl/ieee/prmtvs_p.vhd
+source_file = 1, c:/altera/13.1/quartus/libraries/vhdl/ieee/timing_b.vhd
+source_file = 1, c:/altera/13.1/quartus/libraries/vhdl/ieee/timing_p.vhd
+design_name = circuit
+instance = comp, \Y~output , Y~output, circuit, 1
+instance = comp, \A~input , A~input, circuit, 1
+instance = comp, \B~input , B~input, circuit, 1
+instance = comp, \C~input , C~input, circuit, 1
+instance = comp, \Y~0 , Y~0, circuit, 1

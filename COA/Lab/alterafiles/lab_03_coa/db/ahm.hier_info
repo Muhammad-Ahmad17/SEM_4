@@ -1,0 +1,59 @@
+|ahm
+in1 => andGate:U1.A
+in1 => orGate:U2.A
+in1 => nandGate:U3.A
+in1 => fullAdder:U4.A
+in2 => andGate:U1.B
+in2 => orGate:U2.B
+in2 => nandGate:U3.B
+in2 => fullAdder:U4.B
+Cin => fullAdder:U4.Cin
+selector[0] => muxx:U5.S[0]
+selector[1] => muxx:U5.S[1]
+result <= muxx:U5.X
+cout <= fullAdder:U4.C
+
+
+|ahm|andGate:U1
+A => X.IN0
+B => X.IN1
+X <= X.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ahm|orGate:U2
+A => X.IN0
+B => X.IN1
+X <= X.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ahm|nandGate:U3
+A => X.IN0
+B => X.IN1
+X <= X.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ahm|fullAdder:U4
+A => S.IN0
+A => C.IN0
+B => S.IN1
+B => C.IN1
+Cin => S.IN1
+Cin => C.IN1
+S <= S.DB_MAX_OUTPUT_PORT_TYPE
+C <= C.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|ahm|muxx:U5
+D0 => X.DATAB
+D1 => X.DATAB
+D2 => X.DATAB
+D3 => X.DATAA
+S[0] => Equal0.IN0
+S[0] => Equal1.IN1
+S[0] => Equal2.IN1
+S[1] => Equal0.IN1
+S[1] => Equal1.IN0
+S[1] => Equal2.IN0
+X <= X.DB_MAX_OUTPUT_PORT_TYPE
+
+

@@ -1,0 +1,269 @@
+// Copyright (C) 1991-2013 Altera Corporation
+// Your use of Altera Corporation's design tools, logic functions 
+// and other software and tools, and its AMPP partner logic 
+// functions, and any output files from any of the foregoing 
+// (including device programming or simulation files), and any 
+// associated documentation or information are expressly subject 
+// to the terms and conditions of the Altera Program License 
+// Subscription Agreement, Altera MegaCore Function License 
+// Agreement, or other applicable license agreement, including, 
+// without limitation, that your use is for the sole purpose of 
+// programming logic devices manufactured by Altera and sold by 
+// Altera or its authorized distributors.  Please refer to the 
+// applicable agreement for further details.
+
+// *****************************************************************************
+// This file contains a Verilog test bench with test vectors .The test vectors  
+// are exported from a vector file in the Quartus Waveform Editor and apply to  
+// the top level entity of the current Quartus project .The user can use this   
+// testbench to simulate his design using a third-party simulation tool .       
+// *****************************************************************************
+// Generated on "03/13/2025 01:21:12"
+                                                                        
+// Verilog Self-Checking Test Bench (with test vectors) for design :    ahm
+// 
+// Simulation tool : 3rd Party
+// 
+
+`timescale 1 ps/ 1 ps
+module ahm_vlg_sample_tst(
+	Cin,
+	in1,
+	in2,
+	selector,
+	sampler_tx
+);
+input  Cin;
+input  in1;
+input  in2;
+input [1:0] selector;
+output sampler_tx;
+
+reg sample;
+time current_time;
+always @(Cin or in1 or in2 or selector)
+                                                                                
+begin                                                 
+ if ($realtime > 0)                                   
+ begin                                                
+	if ($realtime == 0 || $realtime != current_time)  
+	begin									          
+		if (sample === 1'bx)                          
+			sample = 0;                               
+		else                                          
+			sample = ~sample;                         
+	end										          
+	current_time = $realtime;					      
+ end                                                  
+end                                                   
+
+assign sampler_tx = sample;
+endmodule
+
+module ahm_vlg_check_tst (
+	cout,
+	result,
+	sampler_rx
+);
+input  cout;
+input  result;
+input sampler_rx;
+
+reg  cout_expected;
+reg  result_expected;
+
+reg  cout_prev;
+reg  result_prev;
+
+reg  cout_expected_prev;
+reg  result_expected_prev;
+
+reg  last_cout_exp;
+reg  last_result_exp;
+
+reg trigger;
+
+integer i;
+integer nummismatches;
+
+reg [1:2] on_first_change ;
+
+
+initial
+begin
+trigger = 0;
+i = 0;
+nummismatches = 0;
+on_first_change = 2'b1;
+end
+
+// update real /o prevs
+
+always @(trigger)
+begin
+	cout_prev = cout;
+	result_prev = result;
+end
+
+// update expected /o prevs
+
+always @(trigger)
+begin
+	cout_expected_prev = cout_expected;
+	result_expected_prev = result_expected;
+end
+
+
+
+// expected cout
+initial
+begin
+	cout_expected = 1'bX;
+end 
+
+// expected result
+initial
+begin
+	result_expected = 1'bX;
+end 
+// generate trigger
+always @(cout_expected or cout or result_expected or result)
+begin
+	trigger <= ~trigger;
+end
+
+always @(posedge sampler_rx or negedge sampler_rx)
+begin
+`ifdef debug_tbench
+	$display("Scanning pattern %d @time = %t",i,$realtime );
+	i = i + 1;
+	$display("| expected cout = %b | expected result = %b | ",cout_expected_prev,result_expected_prev);
+	$display("| real cout = %b | real result = %b | ",cout_prev,result_prev);
+`endif
+	if (
+		( cout_expected_prev !== 1'bx ) && ( cout_prev !== cout_expected_prev )
+		&& ((cout_expected_prev !== last_cout_exp) ||
+			on_first_change[1])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port cout :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", cout_expected_prev);
+		$display ("     Real value = %b", cout_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[1] = 1'b0;
+		last_cout_exp = cout_expected_prev;
+	end
+	if (
+		( result_expected_prev !== 1'bx ) && ( result_prev !== result_expected_prev )
+		&& ((result_expected_prev !== last_result_exp) ||
+			on_first_change[2])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port result :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", result_expected_prev);
+		$display ("     Real value = %b", result_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[2] = 1'b0;
+		last_result_exp = result_expected_prev;
+	end
+
+	trigger <= ~trigger;
+end
+initial 
+
+begin 
+$timeformat(-12,3," ps",6);
+#1000000;
+if (nummismatches > 0)
+	$display ("%d mismatched vectors : Simulation failed !",nummismatches);
+else
+	$display ("Simulation passed !");
+$finish;
+end 
+endmodule
+
+module ahm_vlg_vec_tst();
+// constants                                           
+// general purpose registers
+reg Cin;
+reg in1;
+reg in2;
+reg [1:0] selector;
+// wires                                               
+wire cout;
+wire result;
+
+wire sampler;                             
+
+// assign statements (if any)                          
+ahm i1 (
+// port map - connection between master ports and signals/registers   
+	.Cin(Cin),
+	.cout(cout),
+	.in1(in1),
+	.in2(in2),
+	.result(result),
+	.selector(selector)
+);
+
+// Cin
+always
+begin
+	Cin = 1'b0;
+	Cin = #5000 1'b1;
+	#5000;
+end 
+
+// in1
+always
+begin
+	in1 = 1'b0;
+	in1 = #20000 1'b1;
+	#20000;
+end 
+
+// in2
+always
+begin
+	in2 = 1'b0;
+	in2 = #10000 1'b1;
+	#10000;
+end 
+// selector[ 1 ]
+initial
+begin
+	repeat(6)
+	begin
+		selector[1] = 1'b0;
+		selector[1] = #80000 1'b1;
+		# 80000;
+	end
+	selector[1] = 1'b0;
+end 
+// selector[ 0 ]
+initial
+begin
+	repeat(12)
+	begin
+		selector[0] = 1'b0;
+		selector[0] = #40000 1'b1;
+		# 40000;
+	end
+	selector[0] = 1'b0;
+end 
+
+ahm_vlg_sample_tst tb_sample (
+	.Cin(Cin),
+	.in1(in1),
+	.in2(in2),
+	.selector(selector),
+	.sampler_tx(sampler)
+);
+
+ahm_vlg_check_tst tb_out(
+	.cout(cout),
+	.result(result),
+	.sampler_rx(sampler)
+);
+endmodule
+

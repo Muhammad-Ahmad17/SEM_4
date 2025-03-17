@@ -1,0 +1,47 @@
+|FourBitCounter
+o_output[0] << myDLatch:U1.Q
+o_output[1] << myDLatch:U2.Q
+o_output[2] << myDLatch:U3.Q
+o_output[3] << myDLatch:U4.Q
+clk => myDLatch:U1.clk
+clk => myDLatch:U2.clk
+clk => myDLatch:U3.clk
+clk => myDLatch:U4.clk
+
+
+|FourBitCounter|myDLatch:U1
+clk => Q_not~reg0.CLK
+clk => Q~reg0.CLK
+D => Q~reg0.DATAIN
+D => Q_not~reg0.DATAIN
+Q <= Q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Q_not <= Q_not~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FourBitCounter|myDLatch:U2
+clk => Q_not~reg0.CLK
+clk => Q~reg0.CLK
+D => Q~reg0.DATAIN
+D => Q_not~reg0.DATAIN
+Q <= Q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Q_not <= Q_not~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FourBitCounter|myDLatch:U3
+clk => Q_not~reg0.CLK
+clk => Q~reg0.CLK
+D => Q~reg0.DATAIN
+D => Q_not~reg0.DATAIN
+Q <= Q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Q_not <= Q_not~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FourBitCounter|myDLatch:U4
+clk => Q_not~reg0.CLK
+clk => Q~reg0.CLK
+D => Q~reg0.DATAIN
+D => Q_not~reg0.DATAIN
+Q <= Q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Q_not <= Q_not~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+

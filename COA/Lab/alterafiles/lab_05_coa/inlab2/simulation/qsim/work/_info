@@ -1,0 +1,85 @@
+m255
+K3
+13
+cModel Technology
+Z0 dD:\alterafiles\lab_05_coa\inlab2\simulation\qsim
+vFSM_sequence_detactor
+Z1 !s100 5Z3m1RS9KQfT1a^K[FP:D2
+Z2 IaOb]OZ4FT2j5;nR5E2`KG2
+Z3 VGOcj28E3Ui]ZdB6QBDPIk0
+Z4 dD:\alterafiles\lab_05_coa\inlab2\simulation\qsim
+Z5 w1742014676
+Z6 8FSM_sequence_detactor.vo
+Z7 FFSM_sequence_detactor.vo
+L0 31
+Z8 OV;L;10.1d;51
+r1
+31
+Z9 !s90 -work|work|FSM_sequence_detactor.vo|
+Z10 o-work work -O0
+Z11 n@f@s@m_sequence_detactor
+!i10b 1
+!s85 0
+Z12 !s108 1742014682.120000
+Z13 !s107 FSM_sequence_detactor.vo|
+!s101 -O0
+vFSM_sequence_detactor_vlg_check_tst
+!i10b 1
+Z14 !s100 ?]T5oKKIg`IZ19WGT68?G0
+Z15 IZX3MCgUjTEF6@Dj2Khe6F0
+Z16 VmMR;?lf49CcO]J2RoJiQm2
+R4
+Z17 w1742014672
+Z18 8Waveform.vwf.vt
+Z19 FWaveform.vwf.vt
+L0 59
+R8
+r1
+!s85 0
+31
+Z20 !s108 1742014682.336000
+Z21 !s107 Waveform.vwf.vt|
+Z22 !s90 -work|work|Waveform.vwf.vt|
+!s101 -O0
+R10
+Z23 n@f@s@m_sequence_detactor_vlg_check_tst
+vFSM_sequence_detactor_vlg_sample_tst
+!i10b 1
+Z24 !s100 f4@_]RGaR_`8QjoAhk9]51
+Z25 I;o0_]V8Vn9Nh:9B<PaXUR2
+Z26 VQZYbB2SIf;PZo;0Q3VQNJ1
+R4
+R17
+R18
+R19
+L0 29
+R8
+r1
+!s85 0
+31
+R20
+R21
+R22
+!s101 -O0
+R10
+Z27 n@f@s@m_sequence_detactor_vlg_sample_tst
+vFSM_sequence_detactor_vlg_vec_tst
+!i10b 1
+!s100 NT8n6LLgC:ocZR>C33CVO2
+IGKog0XRF1hQ^LbRNJB7S[0
+Z28 V8gB1Q@4oc<S?^:3<3A^:82
+R4
+R17
+R18
+R19
+Z29 L0 154
+R8
+r1
+!s85 0
+31
+R20
+R21
+R22
+!s101 -O0
+R10
+Z30 n@f@s@m_sequence_detactor_vlg_vec_tst

@@ -1,0 +1,36 @@
+|FSMdiv
+clk => quot[0]~reg0.CLK
+clk => quot[1]~reg0.CLK
+clk => quot[2]~reg0.CLK
+clk => quot[3]~reg0.CLK
+clk => remaind[0]~reg0.CLK
+clk => remaind[1]~reg0.CLK
+clk => remaind[2]~reg0.CLK
+clk => remaind[3]~reg0.CLK
+clk => mystate[0].CLK
+clk => mystate[1].CLK
+clk => mystate[2].CLK
+clk => q[0].CLK
+clk => q[1].CLK
+clk => q[2].CLK
+clk => q[3].CLK
+clk => y[0].CLK
+clk => y[1].CLK
+clk => y[2].CLK
+clk => y[3].CLK
+clk => x[0].CLK
+clk => x[1].CLK
+clk => x[2].CLK
+clk => x[3].CLK
+letstart => Mux13.IN7
+letstart => Mux14.IN7
+remaind[0] <= remaind[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+remaind[1] <= remaind[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+remaind[2] <= remaind[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+remaind[3] <= remaind[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+quot[0] <= quot[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+quot[1] <= quot[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+quot[2] <= quot[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+quot[3] <= quot[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
