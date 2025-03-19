@@ -253,7 +253,7 @@ LEFT JOIN Subject_Teacher st ON t.teacher_id = st.teacher_id
 WHERE st.subject_id IS NULL;
 
 -----------------------------------TASK 15----------------------
-SELECT s.first_student_name + ' ' + s.last_student_name AS student_name, 
+SELECT distinct s.first_student_name + ' ' + s.last_student_name AS student_name, 
        sub.title AS subject_name, 
        m.marks AS obtained_marks,
        CASE 
@@ -269,3 +269,10 @@ JOIN Subjects sub ON m.subject_id = sub.subject_id
 JOIN Subject_Teacher st ON sub.subject_id = st.subject_id
 JOIN Teachers t ON st.teacher_id = t.teacher_id
 WHERE t.first_teacher_name = 'Zaid' AND t.last_teacher_name = 'Ahmed';
+
+
+
+DELETE FROM Marks WHERE marks_id = 7;
+
+INSERT INTO Marks VALUES
+(7, 3, 7, '2023-10-07', 85);
