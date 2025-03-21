@@ -1,0 +1,43 @@
+|ledBlinking
+fpga_clk => top_clk.CLK
+fpga_clk => count[0].CLK
+fpga_clk => count[1].CLK
+fpga_clk => count[2].CLK
+fpga_clk => count[3].CLK
+fpga_clk => count[4].CLK
+fpga_clk => count[5].CLK
+fpga_clk => count[6].CLK
+fpga_clk => count[7].CLK
+fpga_clk => count[8].CLK
+fpga_clk => count[9].CLK
+fpga_clk => count[10].CLK
+fpga_clk => count[11].CLK
+fpga_clk => count[12].CLK
+fpga_clk => count[13].CLK
+fpga_clk => count[14].CLK
+fpga_clk => count[15].CLK
+fpga_clk => count[16].CLK
+fpga_clk => count[17].CLK
+fpga_clk => count[18].CLK
+fpga_clk => count[19].CLK
+fpga_clk => count[20].CLK
+fpga_clk => count[21].CLK
+fpga_clk => count[22].CLK
+fpga_clk => count[23].CLK
+fpga_clk => count[24].CLK
+fpga_clk => count[25].CLK
+fpga_clk => count[26].CLK
+fpga_clk => count[27].CLK
+fpga_clk => count[28].CLK
+fpga_clk => count[29].CLK
+fpga_clk => count[30].CLK
+fpga_clk => count[31].CLK
+switch[0] => Mux0.IN2
+switch[1] => Mux0.IN1
+switch[2] => Mux0.IN0
+led[0] << ledout[0].DB_MAX_OUTPUT_PORT_TYPE
+led[1] << ledout[1].DB_MAX_OUTPUT_PORT_TYPE
+led[2] << ledout[2].DB_MAX_OUTPUT_PORT_TYPE
+led[3] << ledout[3].DB_MAX_OUTPUT_PORT_TYPE
+
+

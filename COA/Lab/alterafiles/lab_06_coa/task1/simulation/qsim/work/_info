@@ -1,0 +1,85 @@
+m255
+K3
+13
+cModel Technology
+Z0 dD:\alterafiles\lab_06_coa\task1\simulation\qsim
+vledBlinking
+Z1 !s100 NKl4cz?BZm<:LG<QKT25^1
+Z2 I`1;17`9N_:lQzj=?NWQVY3
+Z3 VmJb_<:jo=2RiE<>mlZX:Q0
+Z4 dD:\alterafiles\lab_06_coa\task1\simulation\qsim
+Z5 w1742530770
+Z6 8ledBlinking.vo
+Z7 FledBlinking.vo
+L0 31
+Z8 OV;L;10.1d;51
+r1
+31
+Z9 !s90 -work|work|ledBlinking.vo|
+Z10 o-work work -O0
+Z11 nled@blinking
+!i10b 1
+!s85 0
+Z12 !s108 1742530772.310000
+Z13 !s107 ledBlinking.vo|
+!s101 -O0
+vledBlinking_vlg_check_tst
+!i10b 1
+Z14 !s100 f`9dH5F99dNam8;bzBTk40
+Z15 IZBl==]bS^9bO8BJB=T:TM2
+Z16 VT9N]GM^A?707KT8006>F:1
+R4
+Z17 w1742530768
+Z18 8Waveform.vwf.vt
+Z19 FWaveform.vwf.vt
+L0 59
+R8
+r1
+!s85 0
+31
+Z20 !s108 1742530772.416000
+Z21 !s107 Waveform.vwf.vt|
+Z22 !s90 -work|work|Waveform.vwf.vt|
+!s101 -O0
+R10
+Z23 nled@blinking_vlg_check_tst
+vledBlinking_vlg_sample_tst
+!i10b 1
+Z24 !s100 Q1bR>oCiL]<eJ2EnUnzkh3
+Z25 Io7mKLI3O0N2Q=EJlIOT<U2
+Z26 Viemi8M78>9k04=Pa0ca=N1
+R4
+R17
+R18
+R19
+L0 29
+R8
+r1
+!s85 0
+31
+R20
+R21
+R22
+!s101 -O0
+R10
+Z27 nled@blinking_vlg_sample_tst
+vledBlinking_vlg_vec_tst
+!i10b 1
+!s100 a_18HOHgfoPHd8J2egNjz0
+ISk^AC]RdAC<hzj6BdPAGb0
+Z28 VIb3fHzKg9KfFA6WCHCBW[2
+R4
+R17
+R18
+R19
+Z29 L0 207
+R8
+r1
+!s85 0
+31
+R20
+R21
+R22
+!s101 -O0
+R10
+Z30 nled@blinking_vlg_vec_tst
