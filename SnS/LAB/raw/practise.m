@@ -139,11 +139,163 @@ close all
 % 	x = heaviside(t - t0);
 %     	plot(t,x)
 % ===============
-t = -1:0.01:1; % Shorter time range
-y = gauspulse(t); % Generate Gaussian pulse
-plot(t, y), grid on
+% t= 0:0.1:20;
+% x=t.*exp(-0.1*t).*cos(t);
+% % b  even = (x(t)+x(-t))/2
+% x_e=0.5*(x+flip(x));
+% % c  odd
+% x_o=0.5*(x-flip(x));
+% %even+odd
+% x_eo=x_e+x_o;
+% 
+% 
+% subplot(221)
+% plot(t,x)
+% title(' signal x(t)');
+% 
+% subplot(222)
+% plot(t,x_e)
+% title('even decomposition x even(t) of x(t)');
+% 
+% subplot(223)
+% plot(t,x_o)
+% title('odd decomposition x odd(t) of x(t)');
+% 
+% subplot(224)
+% plot(t,x_eo)
+% title('x even(t) + x odd(t)');
+
+% ===============
+% clc 
+% clear
+% close all
+% 
+% t1=0:.1:2;
+% t2=2:.1:4;
+% 
+% x1=t1;
+% x2=t2;
 
 
+% flip > vector flip karta ha 
+%- lagany say plot flip hota ha
+
+% clc; clear; close all;
+% 
+% % Define original piecewise function x(t)
+% t1 = 0:0.01:2;
+% x1 = t1;
+% t2 = 2:0.01:4;
+% x2 = 4 - t2;
+% 
+% % Full x(t)
+% t = [t1, t2];
+% x = [x1, x2];
+% 
+% % Define transformations
+% t_neg = -t;        % x(-t)
+% t_scale = t / 2;   % x(t/2)
+% t_shift_scale1 = (2 + 4*t);  % x(2 + 4t)
+% t_shift_scale2 = (-2 - 4*t); % x(-2 - 4t)
+% 
+% % Plot original signal x(t)
+% subplot(3,2,1);
+% plot(t, x, 'b', 'LineWidth', 2);
+% xlabel('t'); ylabel('x(t)');
+% title('Original Signal x(t)');
+% grid on;
+% 
+% % Plot x(-t) (Time reversal)
+% subplot(3,2,2);
+% plot(t_neg, x, 'r', 'LineWidth', 2);
+% xlabel('t'); ylabel('x(-t)');
+% title('Time-Reversed Signal x(-t)');
+% grid on;
+% 
+% % Plot x(t/2) (Time scaling)
+% subplot(3,2,3);
+% plot(t_scale, x, 'g', 'LineWidth', 2);
+% xlabel('t'); ylabel('x(t/2)');
+% title('Time-Scaled Signal x(t/2)');
+% grid on;
+% 
+% % Plot x(2 + 4t) (Time scaling and shifting)
+% subplot(3,2,4);
+% plot(t_shift_scale1, x, 'm', 'LineWidth', 2);
+% xlabel('t'); ylabel('x(2 + 4t)');
+% title('Scaled and Shifted Signal x(2 + 4t)');
+% grid on;
+% 
+% % Plot x(-2 - 4t) (Time reversal, scaling, and shifting)
+% subplot(3,2,5);
+% plot(t_shift_scale2, x, 'c', 'LineWidth', 2);
+% xlabel('t'); ylabel('x(-2 - 4t)');
+% title('Transformed Signal x(-2 - 4t)');
+% sgtitle('Signal Transformations');
+% grid on;
+% ===============
+% t = 0:.1:2*pi
+% x=sin(t);
+% T=2*pi;
+% %using command window
+% for k=1:5
+%     xk(k,:)=sin(t+k*T)
+% end
+% %using signal
+% x_shifted = sin(t + T);
+% figure;
+% plot(t, x, 'b', 'LineWidth', 2);
+% hold on;
+% plot(t, x_shifted, 'r--', 'LineWidth', 2);
+% 
+% axis([0 2*pi -1 1]);
+% ===============
+% 
+% clc;
+% clear;
+% close all;
+% 
+% t = 0:0.1:6*pi;
+% x = cos(t) + sin(3*t)
+% plot (t,x)
+% ===============
+subplot(311)
+% Causal Signal (t >= 0)
+t = 0:0.1:5;
+x = t .* exp(-t);
+plot(t, x)
+title('Causal Signal')
+xlabel('t')
+ylabel('x(t)')
+grid on
+
+subplot(312)
+% Anti-Causal Signal (t <= 0)
+t = -5:0.1:0;
+x = t .* exp(-t);
+plot(t, x)
+title('Anti-Causal Signal')
+xlabel('t')
+ylabel('x(t)')
+grid on
+
+subplot(313)
+% Non-Causal Signal: x(t) = t*exp(-t) for t from -5 to 5
+t = -5:0.1:5;
+x = t .* exp(-t);
+plot(t, x)
+title('Non-Causal Signal')
+xlabel('t')
+ylabel('x(t)')
+grid on
+% ===============
+% ===============
+% ===============
+% ===============
+% ===============
+% ===============
+% ===============
+% ===============
 % ===============
 % ===============
 % ===============

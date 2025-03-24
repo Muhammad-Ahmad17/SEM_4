@@ -32,6 +32,10 @@
 	plot (x,y2)
 	subplot(313)
 	plot (x,y3)
+
+# Super title
+	% Add Super Title for all subplots
+	sgtitle('Super title');
 	
 # figure
 	plot (x,y1)
@@ -104,7 +108,7 @@
 		% Hold off to stop plotting
 		hold off;
 ```
-# Heaviside
+# Heaviside(unit step)
 - for unit step function (function who are 1 at +ive side)
 ```
 	t=-5:0.01:5;
@@ -116,6 +120,83 @@
 		
 	t = -5:0.01:5;
 	t0 = 2;
-	x = heaviside(t - t0); // two step advance just
+	x = heaviside(t - t0); // two step delay means step start at 2 not 0
 ```
-# Dirac
+# Dirac,Guspulse(unit impulse)
+- dirac
+```
+		t=-3:0.1:3
+		y= inf==dirac(t)
+		plot(t,y)
+		xlabel('Time')
+		ylabel('Amplitude')
+	title('Unit impulse using dirac(t)')
+```
+- gauspulse
+```
+	
+```
+
+# Even Odd
+
+- even = (x(t)+x(-t))/2
+- odd = (x(t)-x(-t))/2
+```
+	t= 0:0.1:20;
+	x=t.*exp(-0.1*t).*cos(t);
+	x_e=0.5*(x+flip(x));
+	x_o=0.5*(x-flip(x));
+	x_eo=x_e+x_o;
+	
+	hold on
+	plot(t,x)
+	plot(t,x_e)
+	plot(t,x_o)
+	plot(t,x_eo)
+	hold off
+```
+
+# Transformations
+```
+	% Define original piecewise function x(t)
+	t1 = 0:0.01:2;
+	x1 = t1;
+	t2 = 2:0.01:4;
+	x2 = 4 - t2;
+	
+	% Full x(t)
+	t = [t1, t2];
+	x = [x1, x2];
+	
+	% Define transformations
+	t_neg = -t;        % x(-t)
+	t_scale = t / 2;   % x(t/2)
+	t_shift_scale1 = (2 + 4*t);  % x(2 + 4t)
+	t_shift_scale2 = (-2 - 4*t); % x(-2 - 4t)
+	
+	% Plot original signal x(t)
+	
+	subplot(3,2,1);
+	plot(t, x, 'b', 'LineWidth', 2);
+	
+	
+	% Plot x(-t) (Time reversal)
+	subplot(3,2,2);
+	plot(t_neg, x, 'r', 'LineWidth', 2);
+	
+	
+	% Plot x(t/2) (Time scaling)
+	subplot(3,2,3);
+	plot(t_scale, x, 'g', 'LineWidth', 2);
+	
+	% Plot x(2 + 4t) (Time scaling and shifting)
+	subplot(3,2,4);
+	plot(t_shift_scale1, x, 'm', 'LineWidth', 2);
+	
+	
+	% Plot x(-2 - 4t) (Time reversal, scaling, and shifting)
+	subplot(3,2,5);
+	plot(t_shift_scale2, x, 'c', 'LineWidth', 2);
+	
+```
+
