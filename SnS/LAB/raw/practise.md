@@ -200,3 +200,86 @@
 	
 ```
 
+
+
+# **Fundamental Period and LCM Calculation for Signals**
+
+
+## **1. Fundamental Period of a Single Function**
+For a simple trigonometric function of the form:
+
+\[ x(t) = \cos(\omega t) \quad \text{or} \quad x(t) = \sin(\omega t) \]
+
+The fundamental period \(T\) is given by:
+
+\[ T = \frac{2\pi}{\omega} \]
+
+where \( \omega \) is the angular frequency.
+
+### **Example:**
+For \( x(t) = \cos(3t) \), the period is:
+\[ T = \frac{2\pi}{3} \]
+
+---
+
+## **2. Fundamental Period for Multiple Frequency Components**
+If a signal consists of multiple frequency components, such as:
+
+\[ x(t) = \cos(t) + \sin(3t) \]
+
+### **Steps to Find the Fundamental Period:**
+1. **Determine Individual Periods:**
+   - \( T_1 = 2\pi \) for \( \cos(t) \)
+   - \( T_2 = \frac{2\pi}{3} \) for \( \sin(3t) \)
+
+2. **Find the Least Common Multiple (LCM) of the Periods:**
+   - Compute the **GCD (Greatest Common Divisor)**:
+     \[ \gcd(2\pi, \frac{2\pi}{3}) = \frac{2\pi}{3} \]
+   
+   - Use the **LCM formula**:
+     \[ \text{LCM}(T_1, T_2) = \frac{|T_1 \cdot T_2|}{\gcd(T_1, T_2)} \]
+   
+   - Substituting values:
+     \[ \text{LCM}(2\pi, \frac{2\pi}{3}) = \frac{(2\pi) \times (\frac{2\pi}{3})}{\frac{2\pi}{3}} = 2\pi \]
+   
+3. **Conclusion:**
+   - The fundamental period is **\( T = 2\pi \)**.
+   - If we need to plot over three periods, we set the time range as \( 0 \leq t \leq 6\pi \).
+
+---
+
+## **3. MATLAB Code for Plotting the Signal**
+To visualize the signal \( x(t) = \cos(t) + \sin(3t) \) over three periods:
+
+```matlab
+clc;
+clear;
+close all;
+
+% Time range for three periods
+T = 2*pi; % Fundamental period
+t = linspace(0, 3*T, 1000); % Fine time step
+
+% Signal Definition
+x_t = cos(t) + sin(3*t);
+
+% Plot the signal
+plot(t, x_t, 'b', 'LineWidth', 1.5);
+xlabel('Time (t)');
+ylabel('x(t)');
+title('Plot of x(t) = cos(t) + sin(3t)');
+grid on;
+```
+This code will generate a smooth plot of the signal over three complete periods.
+
+---
+
+## **4. Summary**
+- **Single component signals** have a period of \( \frac{2\pi}{\omega} \).
+- **Multiple component signals** require the **LCM** of individual periods to find the fundamental period.
+- **MATLAB can be used to plot signals** over multiple periods for visualization.
+
+---
+
+This guide provides a structured approach to finding and plotting the fundamental period of signals. 🚀
+
