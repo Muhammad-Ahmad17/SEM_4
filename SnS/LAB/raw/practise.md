@@ -72,7 +72,7 @@
 # axis settings
 	axis([0 10 -1 1]) -- to set the axis zoom in or select the specific region
 	
-# periods
+# periods, real and imaginary
 	Find (w) (angular frequency).
 	Use (T = 2*pi/w) to get the period.
 	Check if shifting by T keeps the signal the same.
