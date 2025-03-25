@@ -611,3 +611,358 @@ title('Reconstructed u(n) from Even & Odd'); xlabel('n'); ylabel('u(n)'); grid o
 - The decomposition is verified successfully for a general signal and the unit step function.
 - This method is useful for analyzing signal properties in signal processing applications.
 
+---
+
+# Summary Table of System Types
+
+This table provides a quick reference for understanding different types of systems in signal processing and how to identify them by analyzing their waveforms.
+
+| System Type       | Definition | Identification from Waveform |
+|-------------------|------------|--------------------------------|
+| **Causal**       | Output depends only on past and present inputs. | The signal is zero for all \( t < 0 \). |
+| **Non-Causal**   | Output depends on future inputs. | The signal has nonzero values for \( t < 0 \). |
+| **Static**       | Output depends only on current input. | The signal remains proportional to its input without memory effects. |
+| **Dynamic**      | Output depends on past or future inputs. | The signal involves delays or feedback loops, leading to changes over time. |
+| **Time-Invariant** | System properties do not change with time. | The waveform shape remains the same if shifted in time. |
+| **Time-Variant** | System properties change over time. | The signal's shape or frequency changes over time. |
+| **Stable**       | Bounded input results in bounded output (BIBO stable). | The waveform does not grow indefinitely; it remains within fixed limits. |
+| **Unstable**     | Bounded input produces unbounded output. | The signal grows exponentially or oscillates uncontrollably. |
+| **Linear**       | Satisfies superposition and scaling properties. | The signal’s response to a sum of inputs is the sum of individual responses. |
+| **Non-Linear**   | Does not satisfy superposition. | The signal shows distortion or unpredictable amplitude changes. |
+| **Invertible**   | Has an inverse system that recovers input. | The output waveform can be uniquely reversed to obtain the original signal. |
+| **Inverse**      | The system that inverts the effect of another system. | The inverse signal reconstructs the original input when applied. |
+
+By analyzing the waveform shapes, shifts, growth patterns, and responses to different inputs, we can classify signals into these categories.
+
+---
+
+
+# **Linearity in Systems**
+
+## **Introduction**
+A system is **linear** if it satisfies:
+1. **Additivity** (Superposition): The response to a sum of inputs is the sum of their individual responses.
+2. **Homogeneity** (Scaling): Scaling the input scales the output by the same factor.
+
+Linearity allows **simplified mathematical analysis**, making it fundamental in signal processing, control systems, and electrical engineering.
+
+---
+
+## **Mathematical Definition**
+For a system \( S \), if input \( x(t) \) produces output \( y(t) \), we write:
+\[
+y(t) = S\{x(t)\}
+\]
+
+A system is **linear** if for any two input signals \( x_1(t) \) and \( x_2(t) \), and for any scalars \( a_1, a_2 \), the following condition holds:
+\[
+S\{a_1 x_1(t) + a_2 x_2(t)\} = a_1 S\{x_1(t)\} + a_2 S\{x_2(t)\}
+\]
+
+This means:
+- **Superposition**: \( S\{x_1(t) + x_2(t)\} = S\{x_1(t)\} + S\{x_2(t)\} \)
+- **Scaling**: \( S\{a x(t)\} = a S\{x(t)\} \)
+
+---
+
+## **Linearity in Discrete-Time Systems**
+In **discrete-time systems**, signals are defined at discrete points \( n \) instead of continuous time \( t \).  
+A system is **linear** if:
+\[
+S\{a_1 x_1[n] + a_2 x_2[n]\} = a_1 S\{x_1[n]\} + a_2 S\{x_2[n]\}
+\]
+
+### **Example: Checking Linearity in Discrete-Time**
+Consider:
+1. \( y[n] = 2^{x[n]} \) (Exponential transformation)
+2. \( y[n] = n \cdot x[n] \) (Multiplication with index)
+
+---
+
+## **MATLAB Implementation**
+Below is a MATLAB script demonstrating linearity verification for two systems.
+
+```matlab
+clc; clear; close all;
+
+% Define discrete time range
+n = 0:5; 
+x1 = 0.8 .* n;    
+x2 = cos(n);    
+
+a1 = 2;
+a2 = 3;
+
+x_combined = a1*x1 + a2*x2;
+
+% System 1: Exponential Transformation (Nonlinear)
+y1_combined = 2.^x_combined;
+y1_individual = a1*2.^x1 + a2*2.^x2; 
+
+figure;
+subplot(2,1,1);
+stem(n, y1_combined, 'r', 'filled'); grid on;
+title('System 1: Applying y = 2^x on Combined Input');
+
+subplot(2,1,2);
+stem(n, y1_individual, 'b--', 'filled'); grid on;
+title('System 1: Applying y = 2^x on Scaled Inputs then Adding');
+
+% System 2: Multiplication with Index (Linear)
+y2_combined = n .* x_combined;
+y2_individual = a1 * (n .* x1) + a2 * (n .* x2);
+
+figure;
+subplot(2,1,1);
+stem(n, y2_combined, 'r', 'filled'); grid on;
+title('System 2: Applying y = n*x on Combined Input');
+
+subplot(2,1,2);
+stem(n, y2_individual, 'b--', 'filled'); grid on;
+title('System 2: Applying y = n*x on Scaled Inputs then Adding');
+
+```
+# Static and Dynamic Signals
+
+## Introduction
+Signals can be classified into two main types based on how they change over time: **static signals** and **dynamic signals**. This document discusses their characteristics and provides examples with MATLAB code.
+
+## Static Signals
+A static signal is one whose amplitude does not change with time or remains proportional to the original signal without any transformation.
+
+### Example
+In the following MATLAB script, we define a unit step function `x(t)`, and then scale it by a factor of 3. The transformed signal remains a scaled version of the original signal, hence static.
+
+```matlab
+clc;
+close all;
+clear;
+
+t = -5:0.01:5;
+x = heaviside(t) - heaviside(t-1);
+
+% Static transformation (Scaling)
+y_1 = 3 * x;
+
+subplot(311);
+plot(t, x);
+title('Original Signal x(t)');
+
+subplot(312);
+plot(t, y_1);
+title('Scaled Signal y_1(t) = 3x(t)');
+```
+
+In this case, `y_1(t) = 3x(t)`, which represents a static transformation as it only affects the magnitude.
+
+## Dynamic Signals
+A dynamic signal is one that undergoes transformations such as shifts, delays, or other time-dependent modifications.
+
+### Example
+In the following script, we introduce a time shift by 1 unit:
+
+```matlab
+% Dynamic transformation (Time Shift)
+y_2 = heaviside(t-1) - heaviside(t-2);
+
+subplot(313);
+plot(t, y_2);
+title('Shifted Signal y_2(t) = x(t-1)');
+```
+
+Here, the original signal `x(t)` is delayed by 1 unit, resulting in a dynamic transformation.
+
+## Discrete-Time Example
+We can also observe static and dynamic behavior in discrete-time signals using the `stem` function:
+
+```matlab
+clc;
+clear;
+close all;
+
+n = -1:3;
+x = [0 1 2 3 4];
+
+subplot(311);
+stem(n, x);
+legend('x[n]');
+title('Original Discrete Signal x[n]');
+
+% Static transformation (Element-wise Squaring)
+y_1 = x.^2;
+
+subplot(312);
+stem(n, y_1);
+legend('y_1[n] = x^2[n]');
+title('Squared Discrete Signal');
+```
+
+## Conclusion
+- **Static signals** maintain their original form except for scaling.
+- **Dynamic signals** undergo modifications such as shifts and delays.
+
+Understanding these concepts is crucial for signal processing applications in engineering and communications.
+
+
+# Understanding Time Invariance in Systems
+
+## Concept of Time Invariance
+A system is said to be **time-invariant** if shifting the input signal in time results in an identical shift in the output without altering its form. Mathematically, a system with input-output relation:
+
+\[ y(t) = S[x(t)] \]
+
+is **time-invariant** if shifting the input by \( t_0 \) results in:
+
+\[ y'(t) = S[x(t - t_0)] = y(t - t_0) \]
+
+This means that applying the system's transformation to a time-shifted input should yield the same output as shifting the transformed output.
+
+## Example System
+Consider the system defined by:
+
+\[ y(t) = t e^{-t} x(t) \]
+
+where \( x(t) \) is the input signal and \( y(t) \) is the output.
+
+### Testing for Time Invariance
+1. **Original Output:**
+   \[ y(t) = t e^{-t} x(t) \]
+   
+2. **Shifted Input:**
+   \[ x'(t) = x(t - t_0) \]
+   
+3. **System Response to Shifted Input:**
+   \[ y'(t) = t e^{-t} x(t - t_0) \]
+   
+4. **Time-Shifted Output:**
+   \[ y(t - t_0) = (t - t_0) e^{-(t - t_0)} x(t - t_0) \]
+
+Comparing \( y'(t) \) and \( y(t - t_0) \), we observe that:
+   
+\[ y'(t) \neq y(t - t_0) \]
+   
+Thus, the system is **time-variant** because the extra \( t \) term prevents the output from shifting identically to the input.
+
+## MATLAB Implementation
+The following MATLAB script verifies the time variance of the system by comparing the shifted input output with the shifted output.
+
+```matlab
+clc;
+clear;
+close all;
+
+% Define time range
+t = -2:0.01:10;
+t0 = 2;
+
+% Define input signal x(t)
+x = heaviside(t) - heaviside(t - 5);
+
+% Compute original system output y(t)
+y = t .* exp(-t) .* x;
+
+% Shift input signal x(t - t0)
+x_shifted = heaviside(t - t0) - heaviside(t - t0 - 5);
+
+% Compute system output for shifted input y'(t)
+y_shifted_input = t .* exp(-t) .* x_shifted;
+
+% Compute time-shifted output y(t - t0)
+y_time_shifted = (t - t0) .* exp(-(t - t0)) .* x_shifted;
+
+% Plot results
+figure;
+
+subplot(3,1,1);
+plot(t, y, 'b', 'LineWidth', 1.5);
+title('Original Output y(t)');
+xlabel('t'); ylabel('y(t)');
+grid on;
+
+subplot(3,1,2);
+plot(t, y_shifted_input, 'r', 'LineWidth', 1.5);
+title('Output of Shifted Input y''(t)');
+xlabel('t'); ylabel('y''(t)');
+grid on;
+
+subplot(3,1,3);
+plot(t, y_time_shifted, 'g', 'LineWidth', 1.5);
+title('Time-Shifted Output y(t-t0)');
+xlabel('t'); ylabel('y(t-t0)');
+grid on;
+
+% Check if y_shifted_input == y_time_shifted
+if isequal(y_shifted_input, y_time_shifted)
+    disp('The system is Time-Invariant.');
+else
+    disp('The system is Time-Variant.');
+end
+```
+
+## Conclusion
+The system analyzed here is **time-variant** because the explicit dependence on \( t \) causes the output to shift non-linearly with the input. This behavior is common in systems where the transformation involves multiplication by time-dependent terms.
+
+### Key Takeaways:
+- A **time-invariant** system has output that shifts identically to the input.
+- A **time-variant** system exhibits changes in shape, amplitude, or other properties when the input is shifted.
+- The MATLAB script demonstrates this concept visually and numerically.
+
+Understanding time invariance is crucial in designing stable and predictable systems in signal processing and control engineering.
+
+# Understanding Time Shifting in Systems
+
+## **Introduction**
+In signal processing, determining whether a system is **time-invariant** or **time-variant** is crucial. One way to test this is by shifting the input signal and comparing it with the directly computed output.
+
+---
+
+## **📌 Two Approaches to Time Shifting**
+
+### **1️⃣ Shift the Input and Then Compute the Output**
+- First, shift the input signal **\( p(t) \)** to **\( p(t-3) \)**.
+- Then, apply the system function **\( y(t) = t \cdot e^{-t} \cdot p(t) \)** to this shifted input.
+- This results in \( y_{\text{shifted}}(t) \), the output when the input was shifted first.
+
+🔹 **Formula Used:**
+\[
+y(t-3) = (t-3) \cdot e^{-(t-3)} \cdot p(t-3)
+\]
+🔹 **MATLAB Code:**
+```matlab
+t_shifted = t - 3;
+p_shifted = heaviside(t_shifted) - heaviside(t_shifted - 5);
+y_shifted = t_shifted .* exp(-t_shifted) .* p_shifted;
+```
+
+---
+
+### **2️⃣ Directly Compute the Shifted Output**  
+- Instead of shifting the input **first**, we apply the system function to the normal time variable but **only within the shifted range**.
+- We define the function directly over the interval **\( 3 \leq t < 8 \)** where the input was active.
+
+🔹 **Formula Used:**
+\[
+y_{\text{direct}}(t) = t \cdot e^{-t} \cdot p(t-3)
+\]
+🔹 **MATLAB Code:**
+```matlab
+p_direct = heaviside(t - 3) - heaviside(t - 8);
+y_direct = t .* exp(-t) .* p_direct;
+```
+
+---
+
+## **💡 Key Difference Between the Two Approaches**
+
+| **Approach** | **What We Shift?** | **Computation Method** |
+|-------------|-----------------|--------------------|
+| **Shift Input First** | Shift \( p(t) \) to \( p(t-3) \) and then compute \( y(t-3) \) | Uses \( (t-3) \) inside the function |
+| **Direct Computation** | Keep \( t \) unchanged and compute \( y(t) \) only for the shifted range \( [3,8] \) | Uses the same function but with a new window function |
+
+---
+
+## **🎯 Why Do We Compare These Two?**
+- If both methods **give the same result**, the system is **time-invariant**.
+- If they **give different results**, the system is **time-variant**.
+
+This method provides a systematic approach to verifying whether a system is **time-invariant** or not. 🚀

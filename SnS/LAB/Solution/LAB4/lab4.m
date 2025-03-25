@@ -1,21 +1,29 @@
-clc
-clear
-close all
+clc; clear; close all;
 
-n = 0:5;
-x1 = 0.8.^n;
-x2 = cos(n);
+% Define discrete-time index range
+n = 0:5; 
+
+% Given input signals
+x1 = 0.8 .* n;    % x1[n] = 0.8n
+x2 = cos(n);      % x2[n] = cos(n)
+
+% Define arbitrary scalars
 a1 = 2;
 a2 = 3;
 
-z = a1*x1+a2*x2;
-y1 = 2.^z
-stem(n,z)
+% Combined input signal
+x_combined = a1*x1 + a2*x2;
 
-figure
-z1 = 2.^x1;
-z2 = 2.^x2;
+% System 1: y[n] = 2^(x[n])
+y1_combined = 2.^x_combined; % Apply system to combined input
+y1_individual = a1*(2.^x1) + a2*(2.^x2); % Apply system separately then add
 
-y2 = a1*z1+a2*z2
+% Plot results for System 1
+figure;
+subplot(2,1,1);
+stem(n, y1_combined, 'r', 'LineWidth', 2); % Combined input
+grid on;
 
-stem (n,y2)
+subplot(2,1,2);
+stem(n, y1_individual, 'b--', 'LineWidth', 2); % Individual inputs then add
+grid on;

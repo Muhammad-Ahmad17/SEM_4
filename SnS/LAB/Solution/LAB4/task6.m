@@ -1,20 +1,30 @@
-clc;clear;close all
-%It is not time invariant
-t=-5:.1:10;
-x=heaviside(t)-heaviside(t-5);
-y=t.*exp(-t).*x;
-plot(t,y)
-ylim([-.05 .4]);
-legend('y(t)') 
+clc; clear; close all;
 
-figure
-plot(t+3,y)
-ylim([-.05 .4]);
-legend('y(t-3)')
+% Define time range
+t = -5:0.01:15;
 
-figure
-x=heaviside(t-3)-heaviside(t-8);
-y2=t.*exp(-t).*x;
-plot(t,y2)
-ylim([-.01 .2]);
-legend('S[x(t-3)]')
+% Define input signal x(t)
+x = cos(t) .* (heaviside(t) - heaviside(t-10));
+
+% Compute system output y(t) = 1 - 2x(t-1)
+y = 1 - 2 * cos(t-1) .* (heaviside(t-1) - heaviside(t-11));
+
+% Shift x(t) by 2 to get x(t-2)
+x_shifted = cos(t-2) .* (heaviside(t-2) - heaviside(t-12));
+
+% Compute the shifted output y(t-2)
+y_shifted = 1 - 2 * cos(t-3) .* (heaviside(t-3) - heaviside(t-13));
+
+% Compare y(t-2) with S[x(t-2)]
+figure;
+subplot(2,1,1);
+plot(t, y_shifted, 'b', 'LineWidth', 1.5);
+xlabel('t'); ylabel('y(t-2)');
+title('Shifted Output y(t-2)');
+grid on;
+
+subplot(2,1,2);
+plot(t, y, 'r', 'LineWidth', 1.5);
+xlabel('t'); ylabel('S[x(t-2)]');
+title('Output of Shifted Input S[x(t-2)]');
+grid on;
