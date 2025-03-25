@@ -4,8 +4,8 @@ close all
 
 t=-1:.01:3;
 x_t = t .* exp(-t);
-x1_t = (t - 2) .* exp(-(t - 2));
-x2_t = (t + 3) .* exp(-(t + 3));
+x1_t = (t - 2) .* exp(-(t - 2)); % put t = t-2
+x2_t = (t + 3) .* exp(-(t + 3)); % put t = t+3
 
 subplot(311)
 plot(t,x_t,'g');

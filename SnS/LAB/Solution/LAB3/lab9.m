@@ -6,10 +6,10 @@ t = -1:0.01:3;
 x_t = t .* exp(-t); % Original signal x(t)
 
 % Time compression (a = 2): x1(t) = x(2t)
-x1_t = (2*t) .* exp(-2*t);
+x1_t = (2*t) .* exp(-2*t); % *2 with t 
 
 % Time expansion (a = 0.5): x2(t) = x(0.5t)
-x2_t = (0.5*t) .* exp(-0.5*t);
+x2_t = (0.5*t) .* exp(-0.5*t); % *0.5 with t
 
 % Plot the original and scaled signals
 figure;

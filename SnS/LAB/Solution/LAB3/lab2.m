@@ -2,8 +2,9 @@ clc;
 clear;
 close all;
 
-t = 0:0.1:6*pi;
-x = cos(t) + sin(3*t)
+T = 2*pi; 
+t = linspace(0, 3*T, 1000); 
+x = cos(t) + sin(3*t);
 plot (t,x)
 
 
