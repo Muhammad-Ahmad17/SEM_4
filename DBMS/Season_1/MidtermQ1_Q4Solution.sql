@@ -42,7 +42,7 @@ select count(hotelNo) from hotel;
 
 --C
 update r 
-set r.price =1.1 * r.price
+set r.price = 1.1 * r.price
 from room r
 join hotel h on h.hotelNo=r.hotelNo 
 where h.hotelName='Avari Hotel'
