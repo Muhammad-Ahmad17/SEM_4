@@ -1,6 +1,15 @@
 -- task-00
 
-use ahmad_db
+use ahmad_db;
+
+SELECT TABLE_NAME 
+FROM INFORMATION_SCHEMA.TABLES 
+WHERE TABLE_TYPE = 'BASE TABLE';
+
+select * from Users;
+
+
+
 
 create table studentRecord(
 	Name varchar(50),
