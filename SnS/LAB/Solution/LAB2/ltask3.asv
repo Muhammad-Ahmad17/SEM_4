@@ -1,7 +1,3 @@
-clc
-clear
-close all
-
 %1 continous
 t1=-113:0.1:113
 x1=cos(t1)
@@ -15,14 +11,11 @@ t = -113:113;   % Discrete time indices (integer steps)
 x = cos(t);       % Compute the discrete values
 
 % Plot both on the same figure
-subplot(311)
+figure;
 plot(t1, x1); 
-axis([-10 10 -1 1])
-subplot(312)
-stem(n1, x2);
-axis([-10 10 -1 1])
-subplot(313)
-stem(t, x); % Plot discrete signal
+hold on;
+stem(n1, x2);  
+hold off;
 axis([-10 10 -1 1])
 
 % Labels and title

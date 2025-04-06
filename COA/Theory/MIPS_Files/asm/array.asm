@@ -52,7 +52,7 @@ end_main:
     li $v0, 10
     syscall
 
-# ---------- Subroutine ----------
+# ---------- submodule ----------
 print_num_and_newline:
 ## printing
     li $v0, 1

@@ -72,42 +72,67 @@
 # axis settings
 	axis([0 10 -1 1]) -- to set the axis zoom in or select the specific region
 	
-# periods, real and imaginary
-	Find (w) (angular frequency).
-	Use (T = 2*pi/w) to get the period.
-	Check if shifting by T keeps the signal the same.
-	
-```
-		% Fundamental period
-		T = 2*pi/3;  % w = 3
-		
-		% Two periods
-		t = linspace(0, 2*T, 100);
-		
-		% Compute the complex exponential signal
-		y = exp(3j*t);   
-		
-		% Extract real and imaginary parts
-		y_real = real(y);
-		y_imag = imag(y);
-		
-		% Plot real and imaginary parts separately
-		figure;
-		plot(t, y_real, 'b', 'LineWidth', 1.5); hold on;
-		plot(t, y_imag, 'r', 'LineWidth', 1.5);
-		grid on;
-		
-		% Labels and title
-		xlabel('Time (t)'); 
-		ylabel('Amplitude'); 
-		title('Real and Imaginary Parts of y(t) = e^{3jt}');
-		
-		% Legend
-		legend('Real Part: cos(3t)', 'Imaginary Part: sin(3t)');
-		
-		% Hold off to stop plotting
-		hold off;
-```
+# Exploring Complex Exponential Signals
+
+## Objective
+In this example, we explore the behavior of a complex exponential signal and its real and imaginary parts. The primary goal is to understand the period of the signal, angular frequency, and how shifting the signal by one period affects it.
+
+### Fundamental Period and Angular Frequency
+
+The complex exponential signal can be described as:
+
+$$ y(t) = e^{jw t} $$
+
+Where:
+- `w` is the angular frequency in radians per second.
+- `T` is the period of the signal, and it is related to the angular frequency as:
+
+$$ T = \frac{2\pi}{w} $$
+
+For this example, the angular frequency `w` is chosen to be 3. Using the above formula:
+
+$$ T = \frac{2\pi}{3} $$
+
+Thus, the fundamental period of the signal is \( T = \frac{2\pi}{3} \).
+
+### Shifting by One Period
+To check whether shifting the signal by one period `T` keeps the signal the same, we can generate the signal for two periods: from \( t = 0 \) to \( t = 2T \). The signal's behavior over one period will be compared with its behavior over the next period to verify if the periodicity holds.
+
+### MATLAB Code Implementation
+
+Below is the MATLAB code that computes the complex exponential signal and plots its real and imaginary parts.
+
+```matlab
+% Fundamental period
+T = 2*pi/3;  % w = 3
+
+% Two periods
+t = linspace(0, 2*T, 100);
+
+% Compute the complex exponential signal
+y = exp(3j*t);   
+
+% Extract real and imaginary parts
+y_real = real(y);
+y_imag = imag(y);
+
+% Plot real and imaginary parts separately
+figure;
+plot(t, y_real, 'b', 'LineWidth', 1.5); hold on;
+plot(t, y_imag, 'r', 'LineWidth', 1.5);
+grid on;
+
+% Labels and title
+xlabel('Time (t)'); 
+ylabel('Amplitude'); 
+title('Real and Imaginary Parts of y(t) = e^{3jt}');
+
+% Legend
+legend('Real Part: cos(3t)', 'Imaginary Part: sin(3t)');
+
+% Hold off to stop plotting
+hold off;
+
 # Heaviside(unit step)
 - for unit step function (function who are 1 at +ive side)
 ```

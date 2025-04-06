@@ -14,3 +14,17 @@ title('Four Periods of 3 cos(3\pi t + \pi/3)');
 grid on;
 
 
+
+% unfiltered
+
+clc
+clear
+close all
+
+w = 3 * pi ;
+T = 2 * pi / w ;
+t = linspace (0 , 4*T , 100);
+
+x = 3 * cos (3*pi*t + pi/3 )
+
+plot (t, x)
