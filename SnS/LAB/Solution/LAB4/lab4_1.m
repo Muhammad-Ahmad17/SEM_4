@@ -12,10 +12,10 @@ a1 = 2;
 a2 = 3;
 
 % Combined input signal
-x_combined = a1*x1 + a2*x2;
+% x_combined = a1*x1 + a2*x2;
 
 % System 2: y[n] = n * x[n]
-y2_combined = n .* x_combined; % Apply system to combined input
+y2_combined = n .* (a1*x1 + a2*x2); % Apply system to combined input
 y2_individual = a1 * (n .* x1) + a2 * (n .* x2); % Apply system separately then add
 
 % Plot results for System 2

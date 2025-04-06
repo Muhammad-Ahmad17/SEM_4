@@ -2,86 +2,54 @@ clc;
 clear;
 close all;
 
-% Define the time range
-t = -5:.001:10;
-% Define the input signal p(t) as a unit step difference (window function)
+% Define time vector
+t = -5:0.001:10;
+t0 = 2;  % Time shift
+
+% Define original input signal: p(t) = u(t) - u(t - 5)
 p = heaviside(t) - heaviside(t - 5);
-% Compute the system response y(t) = t * exp(-t) * p(t)
+
+% System: y(t) = t * exp(-t) * p(t)
 y = t .* exp(-t) .* p;
 
+% Shifted input: p(t - t0)
+p_shifted = heaviside(t - t0) - heaviside(t - t0 - 5);
+
+% Output for shifted input: y1(t) = t * exp(-t) * p(t - t0)
+y1 = t .* exp(-t) .* p_shifted;
+
+% Time-shifted original output: y2(t) = y(t - t0)
+% Since t - t0 may be out of range, we interpolate
+y2 = interp1(t, y, t - t0, 'linear', 0);  % Linear interpolation with 0 padding
+
+% Plot comparison
 figure;
 
-% Plot the original output y(t)
-subplot(3,1,1); % First subplot
-plot(t, y, 'b', 'LineWidth', 1.5);
-ylim([-.05 .4]);
-grid on;
-legend('y(t)');
-title('Original System Output y(t)');
-xlabel('Time t');
-ylabel('Amplitude');
+subplot(3,1,1);
+plot(t, y1, 'r', 'LineWidth', 1.2);
+title('y1(t) = S[x(t - t0)]');
+xlabel('t'); grid on;
 
-% --------------------- Testing Time Invariance ---------------------
+subplot(3,1,2);
+plot(t, y2, 'b', 'LineWidth', 1.2);
+title('y2(t) = y(t - t0)');
+xlabel('t'); grid on;
 
-% Shift the input signal by t0 = 3 (i.e., x(t-3))
-t_shifted = t - 3;  % Shift time values
-p_shifted = heaviside(t_shifted) - heaviside(t_shifted - 5); % Shifted input signal
-y_shifted = t_shifted .* exp(-t_shifted) .* p_shifted; % Compute new output y(t-3)
+subplot(3,1,3);
+plot(t, y1 - y2, 'k', 'LineWidth', 1.2);
+title('Difference: y1(t) - y2(t)');
+xlabel('t'); grid on;
 
-% Plot the output of the system with shifted input
-subplot(3,1,2); % Second subplot
-plot(t, y_shifted, 'r', 'LineWidth', 1.5);
-ylim([-.05 .4]);
-grid on;
-legend('y(t-3)');
-title('Output when Input is Shifted by 3 (y(t-3))');
-xlabel('Time t');
-ylabel('Amplitude');
-
-% ----------------- Comparing with Directly Shifted Output -----------------
-% Directly shifting the function in the formula
-p_direct = heaviside(t - 3) - heaviside(t - 8);
-y_direct = (t - 3) .* exp(-(t - 3)) .* p_direct; % Also shifting y
-
-% Plot directly computed y(t-3) 
-subplot(3,1,3); % Third subplot
-plot(t, y_direct, 'g', 'LineWidth', 1.5);
-ylim([-.05 .4]);
-grid on;
-legend('y(t-3) Direct Computation');
-title('Directly Computed Output y(t-3)');
-xlabel('Time t');
-ylabel('Amplitude');
+% Decision
+if max(abs(y1 - y2)) < 1e-5
+    disp('? System is Time Invariant');
+else
+    disp('? System is NOT Time Invariant');
+end
 
 % ----------------- Conclusion -----------------
 % If y_shifted (computed from shifted input) matches y_direct (expected result),
 % the system is time-invariant. If not, it is time-variant.
-
-
-clc
-clear
-close all
-
-t = -5:.001:10;
-p = heaviside(t)-heaviside(t-5);
-y = t.*exp(-t).*p;
-plot(t,y)
-ylim([-.05 .4]);
-legend('y(t)')
-
-figure
-plot(t-3,y)
-ylim([-.05 .4]);
-legend('y(t3)')
-
-figure
-t = -5:.001:10;
-p = heaviside(t-3)-heaviside(t-8);
-y = t.*exp(-t).*p;
-plot(t,y)
-ylim([-.05 .4]);
-legend('3[y(t)]')
-
 
 
 

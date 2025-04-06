@@ -2,10 +2,10 @@ clc;
 clear;
 close all;
 
-
 n = -113:113;
-u = (n >= 0);   % u[n] = 1 for n>=0, 0 for n<0
 
+% Define u[n] using Heaviside function
+u = heaviside(n);  
 
 % Because n is symmetric, u[-n] is just flip(u)
 u_neg = flip(u);

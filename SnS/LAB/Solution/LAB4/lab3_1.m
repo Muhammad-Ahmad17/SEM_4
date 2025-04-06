@@ -8,13 +8,13 @@ x2 = heaviside(t) - heaviside(t-2); % Define a second input x2(t)
 a1 = 2; 
 a2 = 3;
 % Nonlinear System: y(t) = x^2(t)
-y2_combined = (a1*x1 + a2*x2).^2; % Applying system on combined input
+y2_combined = 2.^(a1*x1 + a2*x2); % Applying system on combined input
 y2_individual = a1 * (x1.^2) + a2 * (x2.^2); % Applying system separately
 
 % Plot results for System 2
 figure;
 subplot(2,1,1);
-plot(t, y2_combined, 'r', 'LineWidth', 2);
+plot(t, y2_combined, 'r', ' LineWidth', 2);
 title('System 2: y = x^2 Applied to Combined Input');
 ylim([-1 11]); grid on;
 

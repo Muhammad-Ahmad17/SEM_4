@@ -1,18 +1,26 @@
-clc
-clear 
-close all
-t = 0:.1:2*pi
-x=sin(t);
-T=2*pi;
-%using command window
-for k=1:10
-    xk(k,:)=sin(t+k*T)
-end
-%using signal
-x_shifted = sin(t + T);
-figure;
-plot(t, x, 'b', 'LineWidth', 2);
-hold on;
-plot(t, x_shifted, 'r--', 'LineWidth', 2);
+clc;
+clear;
+close all;
 
-axis([0 2*pi -1 1]);
+t = -2 : .1 : 2;
+x = sin(t);
+T=2*pi;
+
+for n = 1:5
+       xn(n,:) = sin(t+n*T)
+       figure
+       plot(t,xn(n,:) )
+end
+%====================
+clc;
+clear;
+close all;
+
+t = -2 : .1 : 2;
+x = t .* sin(t);  % Non-periodic signal
+
+for n = 1:5
+    xn(n,:) = x + n;  % Simply shifting the non-periodic signal
+    figure;
+    plot(t, xn(n,:));
+end

@@ -15,11 +15,6 @@ y_1 = x.^2;
 stem(n,y_1);
 legend('y_1[n]')
 
-%?????
-subplot(313)
-a = 1/2;
-y_2 = x.^a;
-stem(n,y_2)
-legend('y_2[n]')    
+ 
 
 

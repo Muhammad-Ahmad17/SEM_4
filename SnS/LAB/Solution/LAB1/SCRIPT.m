@@ -21,6 +21,26 @@ plot(t,f)
 %}
 
 
+clc;
+clear;
+close all
 
+t = 0:0.01:10;      % Define time vector
+T = 1;              % Trial period
+
+for k = 1:10
+    xk(k, :) = sin(t + k * T);   % Time-shifted versions of sin(t)
+end
+
+% Plot all versions on a single figure
+figure;
+hold on;
+for k = 1:10
+    plot(t, xk(k, :));
+end
+hold off;
+title('Visual Check for Periodicity');
+xlabel('Time');
+ylabel('Amplitude');
 
 
