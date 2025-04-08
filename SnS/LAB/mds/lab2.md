@@ -110,9 +110,10 @@ A digital signal is both discrete in time and amplitude. Here, we approximate it
 % Digital Signal
 t = -113:113;
 x = cos(t);
+round_x= round(x);
 
 subplot(313)
-stem(t, x);
+stem(t, round_x);
 axis([-10 10 -1 1])
 title('Digital Signal')
 ```

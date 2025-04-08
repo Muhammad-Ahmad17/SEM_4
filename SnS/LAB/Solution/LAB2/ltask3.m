@@ -13,6 +13,7 @@ x2=cos(n1)
 % 3 digital
 t = -113:113;   % Discrete time indices (integer steps)
 x = cos(t);       % Compute the discrete values
+round_x= round(x);
 
 % Plot both on the same figure
 subplot(311)
@@ -22,7 +23,7 @@ subplot(312)
 stem(n1, x2);
 axis([-10 10 -1 1])
 subplot(313)
-stem(t, x); % Plot discrete signal
+stem(t, round_x); % Plot discrete signal
 axis([-10 10 -1 1])
 
 % Labels and title
