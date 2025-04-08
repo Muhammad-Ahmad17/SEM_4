@@ -98,5 +98,4 @@ HAVING COUNT(m.id) > (
 SELECT o.name 
 FROM orchestras o
 JOIN members m ON o.id = m.orchestra_id
-GROUP BY o.id, o.name
 HAVING COUNT(m.id) <= 3;

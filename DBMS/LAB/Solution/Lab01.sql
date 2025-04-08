@@ -8,9 +8,6 @@ WHERE TABLE_TYPE = 'BASE TABLE';
 
 select * from Users;
 
-
-
-
 create table studentRecord(
 	Name varchar(50),
 	regNo int primary key,
@@ -43,6 +40,7 @@ values ('Hassan', 10)
 -- update apna record
 -- set (nmae='newnaem', ...)
 -- where id is x
+
 update studentRecord
 set Courses = 'DIP',courseCode  = 1001, offeredBy = 'Mr. A'
 where name = 'Ikram';
@@ -62,7 +60,9 @@ WHERE courseCode = 1001;
 SELECT DISTINCT Courses,courseCode,offeredBy FROM studentRecord
 
 -- task-05
-SELECT * FROM studentRecord ORDER 
-BY Name DESC 
+SELECT * 
+FROM studentRecord 
+ORDER BY Name 
+DESC 
 
 select * from studentRecord

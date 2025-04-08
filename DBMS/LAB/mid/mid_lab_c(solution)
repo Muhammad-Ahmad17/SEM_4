@@ -1,0 +1,154 @@
+-- Create and use the database
+create database mid_exam;
+use mid_exam;
+
+-- Schema creation
+-- TASK 1a: Create tables
+create table students (
+    student_id int primary key,
+    name varchar(30) not null,
+    department varchar(30) not null,
+    enrollment_date date
+);
+
+create table courses (
+    course_id int primary key,
+    course_name varchar(30) not null,
+    credit_hours int not null
+);
+
+create table enrollments (
+    student_id int not null,
+    course_id int not null,
+    primary key (student_id, course_id),
+    foreign key (student_id) references students(student_id),
+    foreign key (course_id) references courses(course_id)
+);
+
+-- TASK 1a: Insert data into students
+insert into students 
+values
+(1, 'Ahmad', 'CS', '2021-08-04'),
+(2, 'Ali', 'EE', '2021-08-04'),
+(3, 'Hassan', 'CE', '2021-08-04'),
+(4, 'Usman', 'SE', '2021-08-04');
+
+-- TASK 1a: Insert data into courses
+insert into courses 
+values
+(1, 'DIP', 4),
+(2, 'Databases', 3),
+(3, 'DSA', 3),
+(4, 'OOP', 4);
+
+-- TASK 1a: Insert data into enrollments
+insert into enrollments 
+values
+(1, 3),
+(2, 4),
+(3, 1),
+(4, 2);
+
+-- TASK 1a: Display data
+select * from students;
+select * from courses;
+select * from enrollments;
+
+-- TASK 1b: Update student name where department is 'CS' and date is specific
+update students 
+set name = 'updatedName'
+where department = 'CS' and enrollment_date = '2021-08-04';
+
+-- TASK 1c: Delete (not truncate) courses with credit_hours < 3
+delete from courses where credit_hours < 3;
+
+-- TASK 2a: Calculate average credit hours
+select avg(credit_hours) as [average credit_hours]
+from courses;
+
+-- TASK 2b: Show current system date
+select getdate() as [current system date];
+
+-- TASK 2c: Show course names in uppercase
+select upper(course_name) as [upper course name]
+from courses;
+
+-- TASK 3a: Select students whose name starts with 'A'
+select name 
+from students 
+where name like 'A%';
+
+-- TASK 3b: Select students with enrollment_date between 2021 and 2023
+select * 
+from students 
+where enrollment_date between '2021-01-01' and '2023-12-31';
+
+-- TASK 3c: Select students in CS or EE department
+select * 
+from students 
+where department = 'CS' or department = 'EE';
+
+-- TASK 3d: Select courses with 'data' in their name
+select course_id, course_name 
+from courses 
+where course_name like '%data%';
+
+-- TASK 4a: Add email column with unique constraint
+alter table students 
+add email varchar(34);
+
+alter table students 
+add constraint uk_email unique(email);
+
+-- TASK 4b: Create departments table and add FK to students
+create table departments (
+    dept_id int primary key,
+    dept_name varchar(30) unique not null
+);
+
+alter table students 
+add constraint fk_dept_name foreign key (department) references departments(dept_name);
+
+-- TASK 5a: Inner join to show student name and course name
+select s.name, c.course_name
+from students s
+join enrollments e on e.student_id = s.student_id
+join courses c on c.course_id = e.course_id;
+
+-- TASK 5b: Left join to show all students and their course names (if any)
+select s.name, c.course_name
+from students s
+left join enrollments e on e.student_id = s.student_id
+left join courses c on c.course_id = e.course_id;
+
+-- TASK 5c: Courses with more than one enrollment (grouped by course)
+select e.course_id
+from enrollments e
+group by e.course_id
+having count(*) > 1;
+
+-- TASK 6a: Students with student_id greater than average student_id
+select * from students 
+where student_id > (
+    select avg(student_id) from students
+);
+
+-- TASK 6b: Departments with more than one student
+select department 
+from students 
+group by department 
+having count(*) > 1;
+
+-- TASK 6c: Courses enrolled by more than average number of students
+select c.course_name
+from courses c
+join enrollments e on c.course_id = e.course_id
+group by c.course_name
+having count(*) > (
+    select avg(enroll_count)
+    from (
+        select count(*) as enroll_count
+        from enrollments
+        group by course_id
+    ) as avg_table
+);
