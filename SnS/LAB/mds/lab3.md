@@ -25,6 +25,9 @@ T = 1;              % Trial period
 
 for k = 1:10
     xk(k, :) = sin(t + k * T);   % Time-shifted versions of sin(t)
+    figure 
+    plot(t, xk(k, :));
+ 
 end
 
 % Plot all versions on a single figure
