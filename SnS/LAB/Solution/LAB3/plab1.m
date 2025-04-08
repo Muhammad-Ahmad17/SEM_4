@@ -7,7 +7,7 @@ x=t.*exp(-0.1*t).*cos(t);
 % b  even = (x(t)+x(-t))/2
 x_e=0.5*(x+flip(x));
 % c  odd
-x_o=0.5*(x-flip(x));
+x_o=1.5*(x-flip(x));
 %even+odd
 x_eo=x_e+x_o;
 
@@ -36,5 +36,5 @@ title('x even(t) + x odd(t)');
 %extra
 
 
-% plot(-t,x)
-% title('flip')
+ plot(-t,x)
+ title('flip')

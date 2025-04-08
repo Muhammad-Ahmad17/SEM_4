@@ -14,7 +14,7 @@ stem(n,x);
 
 
 % dynamic ha b awala 
-hold on ;
+figure
 a = 1/2;
 x1 = upsample(x,1/a)
 n1=-2:7;

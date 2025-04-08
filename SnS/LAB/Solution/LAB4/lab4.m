@@ -12,7 +12,7 @@ a1 = 2;
 a2 = 3;
 
 % Combined input signal
-|% x_combined = a1*x1 + a2*x2;
+% x_combined = a1*x1 + a2*x2;
 
 % System 1: y[n] = 2^(x[n])
 y1_combined = 2.^ (a1*x1 + a2*x2); % Apply system to combined input

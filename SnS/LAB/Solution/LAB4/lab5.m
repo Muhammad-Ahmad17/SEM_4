@@ -1,56 +1,48 @@
-clc;
-clear;
-close all;
+clc; clear; close all;
 
-% Define time vector
-t = -5:0.001:10;
-t0 = 2;  % Time shift
+% Define time range
+t = -2:0.01:10;
+t0 = 2;
 
-% Define original input signal: p(t) = u(t) - u(t - 5)
-p = heaviside(t) - heaviside(t - 5);
+% Define input signal x(t)
+x = heaviside(t) - heaviside(t - 5);
 
-% System: y(t) = t * exp(-t) * p(t)
-y = t .* exp(-t) .* p;
+% Compute original system output y(t)
+y = t .* exp(-t) .* x;
 
-% Shifted input: p(t - t0)
-p_shifted = heaviside(t - t0) - heaviside(t - t0 - 5);
+% Shift input signal x(t - t0)
+x_shifted = heaviside(t - t0) - heaviside(t - t0 - 5);
 
-% Output for shifted input: y1(t) = t * exp(-t) * p(t - t0)
-y1 = t .* exp(-t) .* p_shifted;
+% Compute system output for shifted input y'(t)
+y_shifted_input = t .* exp(-t) .* x_shifted;
 
-% Time-shifted original output: y2(t) = y(t - t0)
-% Since t - t0 may be out of range, we interpolate
-y2 = interp1(t, y, t - t0, 'linear', 0);  % Linear interpolation with 0 padding
+% Compute time-shifted output y(t - t0)
+y_time_shifted = (t - t0) .* exp(-(t - t0)) .* x_shifted;
 
-% Plot comparison
+% Plot results
 figure;
 
 subplot(3,1,1);
-plot(t, y1, 'r', 'LineWidth', 1.2);
-title('y1(t) = S[x(t - t0)]');
-xlabel('t'); grid on;
+plot(t, y, 'b', 'LineWidth', 1.5);
+title('Original Output y(t)');
+xlabel('t'); ylabel('y(t)');
+grid on;
 
 subplot(3,1,2);
-plot(t, y2, 'b', 'LineWidth', 1.2);
-title('y2(t) = y(t - t0)');
-xlabel('t'); grid on;
+plot(t, y_shifted_input, 'r', 'LineWidth', 1.5);
+title('Output of Shifted Input y''(t)');
+xlabel('t'); ylabel('y''(t)');
+grid on;
 
 subplot(3,1,3);
-plot(t, y1 - y2, 'k', 'LineWidth', 1.2);
-title('Difference: y1(t) - y2(t)');
-xlabel('t'); grid on;
+plot(t, y_time_shifted, 'g', 'LineWidth', 1.5);
+title('Time-Shifted Output y(t-t0)');
+xlabel('t'); ylabel('y(t-t0)');
+grid on;
 
-% Decision
-if max(abs(y1 - y2)) < 1e-5
-    disp('? System is Time Invariant');
+% Check if y_shifted_input == y_time_shifted
+if isequal(y_shifted_input, y_time_shifted)
+    disp('The system is Time-Invariant.');
 else
-    disp('? System is NOT Time Invariant');
+    disp('The system is Time-Variant.');
 end
-
-% ----------------- Conclusion -----------------
-% If y_shifted (computed from shifted input) matches y_direct (expected result),
-% the system is time-invariant. If not, it is time-variant.
-
-
-
-
