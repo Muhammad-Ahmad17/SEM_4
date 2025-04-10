@@ -1,0 +1,85 @@
+m255
+K3
+13
+cModel Technology
+Z0 dD:\alterafiles\lab_06_coa\task2\simulation\qsim
+vfortuneWheel
+Z1 !s100 LXHPF9WTNJQhKfQGPWOI_2
+Z2 IHET]ffJGBlhb??MP0TRYI2
+Z3 V46LSm@l>cn7^E7`lSZgT22
+Z4 dD:\alterafiles\lab_06_coa\task2\simulation\qsim
+Z5 w1743295066
+Z6 8fortuneWheel.vo
+Z7 FfortuneWheel.vo
+L0 31
+Z8 OV;L;10.1d;51
+r1
+31
+Z9 !s90 -work|work|fortuneWheel.vo|
+Z10 o-work work -O0
+Z11 nfortune@wheel
+!i10b 1
+!s85 0
+Z12 !s108 1743295067.773000
+Z13 !s107 fortuneWheel.vo|
+!s101 -O0
+vfortuneWheel_vlg_check_tst
+!i10b 1
+Z14 !s100 j>706=2F[>M9@f79[CSMI2
+Z15 ISd@3CCb=5P4fk:lAWLdgC1
+Z16 V1I6XUka09IRAH98^RKKof2
+R4
+Z17 w1743295060
+Z18 8Waveform.vwf.vt
+Z19 FWaveform.vwf.vt
+L0 61
+R8
+r1
+!s85 0
+31
+Z20 !s108 1743295067.885000
+Z21 !s107 Waveform.vwf.vt|
+Z22 !s90 -work|work|Waveform.vwf.vt|
+!s101 -O0
+R10
+Z23 nfortune@wheel_vlg_check_tst
+vfortuneWheel_vlg_sample_tst
+!i10b 1
+Z24 !s100 e[k4`Zz8RfC8^[WN;K:VE3
+Z25 IoT@Gi=l=G5dE6LV<=lXIO1
+Z26 VYC:B7>@JAhH`?VfjJ1lV:1
+R4
+R17
+R18
+R19
+L0 29
+R8
+r1
+!s85 0
+31
+R20
+R21
+R22
+!s101 -O0
+R10
+Z27 nfortune@wheel_vlg_sample_tst
+vfortuneWheel_vlg_vec_tst
+!i10b 1
+!s100 2^?5D:h2OnKhH:g<nLd`i2
+Id_=>`niVIVDQReOHJJjOD0
+Z28 Vd<XE1jc@?<C_NA133YRmZ0
+R4
+R17
+R18
+R19
+Z29 L0 817
+R8
+r1
+!s85 0
+31
+R20
+R21
+R22
+!s101 -O0
+R10
+Z30 nfortune@wheel_vlg_vec_tst
