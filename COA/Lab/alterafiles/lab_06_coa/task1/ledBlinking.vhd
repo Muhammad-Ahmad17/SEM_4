@@ -15,12 +15,12 @@ architecture bhv of ledBlinking is
 	signal count    : std_logic_vector(31 downto 0) := X"00000000";
 	signal top_clk  : std_logic;
 	signal ledout	 : std_logic_vector(3 downto 0);
-	
+	 
 begin 
 	---
 	process (fpga_clk)
 	begin
-		if (fpga_clk 'event and fpga_clk = '1') then 
+		if (fpga_clk 'event and fpga_clk = '1') then
 		count <= count + 1;
 		end if;
 	end process;

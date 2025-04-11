@@ -1,0 +1,75 @@
+create
+read
+update
+delete
+
+order by
+group by
+
+> SCALER FUNCTION
+- upper 
+- lower 
+- length
+- round
+- now {current data n time}
+
+> AGGRECATION FUNCTION {having instead of where}
+- count 
+- sum 
+- avg
+- max
+- min 
+
+> WILD CARD
+
+> like , in , between
+
+
+upper(name)
+len(name) 
+
+
+
+
+
+
+
+
+
+-- alter for not null
+
+alter table x
+alter column x_1 int not null {now hear just write in format as we write at creation time} 
+
+-- alter for primary key
+
+alter table x 
+add constraint fk_column_x_1 primary key (column x_1)
+
+
+
+-- update record
+
+update record_1
+set name='newname' , ... 
+where id is x
+
+
+
+-- nth highest record
+
+SELECT * 
+FROM emp e1
+WHERE 3 - 1 = (
+    SELECT COUNT(DISTINCT salary) 
+    FROM emp e2 
+    WHERE e2.salary > e1.salary
+);
+
+
+
+-- where vs group by _ having  
+
+WHERE filters rows before grouping.
+
+HAVING filters groups after the GROUP BY operation and is typically used with aggregate functions like COUNT, SUM, etc.
