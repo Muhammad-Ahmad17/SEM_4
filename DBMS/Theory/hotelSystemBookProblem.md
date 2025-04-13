@@ -68,6 +68,157 @@ Before DBMS came into widespread use, data was stored using **file-based systems
 Modern DBMS have **largely solved** the major issues with traditional file-based systems, offering **consistency**, **integrity**, **security**, and **efficient data access**. However, they come with trade-offs in terms of complexity and cost, which may or may not be justified depending on the application.
 
 
+---
+
+## 🧾 Sample Tables
+
+### Table: `A`  
+| id | name  |
+|----|-------|
+| 1  | Alice |
+| 2  | Bob   |
+| 3  | Carol |
+
+### Table: `B`
+| a_id | city     |
+|------|----------|
+| 1    | London   |
+| 2    | Paris    |
+| 4    | Berlin   |
+
+---
+
+## 1️⃣ **INNER JOIN**
+```sql
+SELECT *
+FROM A
+INNER JOIN B ON A.id = B.a_id;
+```
+
+✅ Matching IDs: 1 and 2  
+❌ No match for A.id = 3, and B.a_id = 4
+
+**Result:**
+| id | name  | a_id | city   |
+|----|-------|------|--------|
+| 1  | Alice | 1    | London |
+| 2  | Bob   | 2    | Paris  |
+
+---
+
+## 2️⃣ **LEFT JOIN**
+```sql
+SELECT *
+FROM A
+LEFT JOIN B ON A.id = B.a_id;
+```
+
+✅ All rows from A, even if no match in B
+
+**Result:**
+| id | name  | a_id | city   |
+|----|-------|------|--------|
+| 1  | Alice | 1    | London |
+| 2  | Bob   | 2    | Paris  |
+| 3  | Carol | NULL | NULL   |
+
+---
+
+## 3️⃣ **RIGHT JOIN**
+```sql
+SELECT *
+FROM A
+RIGHT JOIN B ON A.id = B.a_id;
+```
+
+✅ All rows from B, even if no match in A
+
+**Result:**
+| id | name  | a_id | city   |
+|----|-------|------|--------|
+| 1  | Alice | 1    | London |
+| 2  | Bob   | 2    | Paris  |
+| NULL | NULL | 4    | Berlin |
+
+---
+
+## 4️⃣ **FULL OUTER JOIN**
+```sql
+SELECT *
+FROM A
+FULL OUTER JOIN B ON A.id = B.a_id;
+```
+
+✅ Combines LEFT and RIGHT joins
+
+**Result:**
+| id | name  | a_id | city   |
+|----|-------|------|--------|
+| 1  | Alice | 1    | London |
+| 2  | Bob   | 2    | Paris  |
+| 3  | Carol | NULL | NULL   |
+| NULL | NULL | 4    | Berlin |
+
+---
+
+## 5️⃣ **LEFT EXCLUDING JOIN**
+```sql
+SELECT *
+FROM A
+LEFT JOIN B ON A.id = B.a_id
+WHERE B.a_id IS NULL;
+```
+
+❌ Show only rows in A with no match in B
+
+**Result:**
+| id | name  |
+|----|-------|
+| 3  | Carol |
+
+---
+
+## 6️⃣ **RIGHT EXCLUDING JOIN**
+```sql
+SELECT *
+FROM A
+RIGHT JOIN B ON A.id = B.a_id
+WHERE A.id IS NULL;
+```
+
+❌ Show only rows in B with no match in A
+
+**Result:**
+| a_id | city   |
+|------|--------|
+| 4    | Berlin |
+
+---
+
+## 7️⃣ **CROSS JOIN**
+```sql
+SELECT *
+FROM A
+CROSS JOIN B;
+```
+
+✅ Every combination of A and B
+
+**Result:** 3 rows in A × 3 rows in B = **9 rows**
+| id | name  | a_id | city   |
+|----|-------|------|--------|
+| 1  | Alice | 1    | London |
+| 1  | Alice | 2    | Paris  |
+| 1  | Alice | 4    | Berlin |
+| 2  | Bob   | 1    | London |
+| 2  | Bob   | 2    | Paris  |
+| 2  | Bob   | 4    | Berlin |
+| 3  | Carol | 1    | London |
+| 3  | Carol | 2    | Paris  |
+| 3  | Carol | 4    | Berlin |
+
+---
+---
 # 📘 Relational Algebra Queries for Hotel Database
 
 ## 🧩 Schema
