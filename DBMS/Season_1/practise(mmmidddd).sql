@@ -249,3 +249,14 @@ drop database DEL;
 
 SELECT firstname + ' ' + lastName [Full Name] FROM doctor_tb
 
+
+
+use mid_theory;
+
+
+
+UPDATE r
+SET r.price = 1.1 * r.price
+FROM Room r
+JOIN Hotel h ON h.hotelNo = r.hotelNo
+WHERE h.hotelName = 'Ritz';
