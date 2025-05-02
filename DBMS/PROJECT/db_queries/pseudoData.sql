@@ -404,7 +404,22 @@ VALUES
     (10, 1, 350.00, '2025-04-22');  -- Quincy’s Jewelry: 1x Necklace (350)
 																select * from vendor_analytics
 
+INSERT INTO discount (vendor_id, product_item_id, discount_percentage, discount_code, start_date, end_date, is_active)
+VALUES
+    (1, NULL, 15.00, 'TECH15', '2025-04-01 00:00:00', '2025-04-30 23:59:59', 1),  -- Vendor 1 (Jane’s Tech Shop), 15% off all products, active
+    (1, 1, 20.00, 'LAPTOP20', '2025-04-10 00:00:00', '2025-04-20 23:59:59', 0),   -- Vendor 1, 20% off Laptop Pro, inactive (ended)
+    (2, NULL, 10.00, 'GADGET10', '2025-04-05 00:00:00', '2025-04-25 23:59:59', 1), -- Vendor 2 (Alice’s Gadgets), 10% off all products, active
+    (4, 9, 25.00, 'BOOK25', '2025-04-15 00:00:00', '2025-04-22 23:59:59', 0),     -- Vendor 4 (Ethan’s Books), 25% off Fiction Novel, inactive (ended)
+    (6, 15, 30.00, 'TOY30', '2025-04-20 00:00:00', '2025-04-29 23:59:59', 1);    -- Vendor 6 (Ian’s Toys), 30% off Chess Set, active
 
+
+INSERT INTO cart (user_id, product_item_id, quantity, added_at)
+VALUES
+    (1, 1, 2, '2025-04-23 09:00:00'),  -- John Doe adds 2 Laptop Pros (vendor 1)
+    (5, 2, 1, '2025-04-23 09:30:00'),  -- Charlie Davis adds 1 Smartphone X (vendor 1)
+    (8, 5, 1, '2025-04-23 10:00:00'),  -- Fiona Green adds 1 Men’s Jacket (vendor 2)
+    (10, 15, 3, '2025-04-23 10:30:00'), -- Hannah Ivy adds 3 Chess Sets (vendor 6)
+    (14, 19, 1, '2025-04-23 11:00:00'); -- Laura Miller adds 1 Kitchen Mixer (vendor 9)
 
 -- 1. [user] - 20 users (buyers, vendors, managers)
 SELECT * FROM [user];

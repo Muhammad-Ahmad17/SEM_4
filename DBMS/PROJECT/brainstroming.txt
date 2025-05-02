@@ -1,0 +1,39 @@
+-- sale dainy k liy procedure 
+-- how we know that the user is online or not 
+-- vendor request manager for approval how the manager get notified
+-- address is default means (from GPS ?)
+-- let i am showing all products of mens 
+	-- select * from produect where catagory name is men
+
+	-- api get an array of json ?
+
+-- study the whole life cyle of a product_sale 
+	-- vendor add product 
+			> stock count ++
+	-- buyer buy product 
+			-- confirmation of order_online  (transction)
+				> payment status -- how the payment is verifed through external e-bank or e-card
+					-- pass
+						-- verification from e_bank (slip generated)
+						> transaction commit
+						> order status 1   --confirmed
+					-- reject 
+						-- rejected
+						 > transaction rollback	
+						 > order status 0
+				-- payment confirmation
+				-- decrese count only if tracstion commits 
+				> stocck count -- 
+
+	-- shiping a product  
+		-- order deliverd
+			> shiped 
+
+		-- order not deliverd due to some reason 
+			> return case
+
+	-- review
+		if order deliverd
+			> shiped 
+
+		user give a review

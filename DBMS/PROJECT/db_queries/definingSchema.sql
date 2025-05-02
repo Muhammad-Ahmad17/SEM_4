@@ -18,8 +18,6 @@ CREATE TABLE [user] (
     is_active BIT DEFAULT 1
 );
 
-go 
-
 -- 2. role
 -- Defines the three roles: buyer, vendor, manager.
 CREATE TABLE role (
@@ -30,8 +28,7 @@ CREATE TABLE role (
     created_at DATETIME DEFAULT GETDATE(),
     CONSTRAINT chk_role_name CHECK (name IN ('buyer', 'vendor', 'manager'))
 );
-
- go 
+ 
 -- 3. user_role
 -- Maps users to roles (many-to-many).
 CREATE TABLE user_role (
@@ -75,8 +72,8 @@ CREATE TABLE vendor (
 CREATE TABLE address (
     id INT PRIMARY KEY IDENTITY,
     [user_id] INT NOT NULL,
-    address_line1 VARCHAR(255) NOT NULL,
-    address_line2 VARCHAR(100),
+    address_line1 VARCHAR(255) NOT NULL, -- house no , street no 
+    address_line2 VARCHAR(100),	--block no , sub-division no
     city VARCHAR(100) NOT NULL,
     state VARCHAR(100),
     postal_code VARCHAR(20) NOT NULL,
@@ -246,4 +243,31 @@ CREATE TABLE vendor_analytics (
     FOREIGN KEY (vendor_id) REFERENCES vendor(id),
     CONSTRAINT chk_vendor_analytics_total_products CHECK (total_products >= 0),
     CONSTRAINT chk_vendor_analytics_total_sales_amount CHECK (total_sales_amount >= 0)
+);
+
+-- 19. discount
+CREATE TABLE discount (
+    id INT IDENTITY(1,1) PRIMARY KEY,
+    vendor_id INT NOT NULL,
+    product_item_id INT NULL, -- NULL means discount applies to all vendor products
+    discount_percentage DECIMAL(5,2) NOT NULL CHECK (discount_percentage BETWEEN 0 AND 100),
+    discount_code VARCHAR(50) NOT NULL UNIQUE,
+    start_date DATETIME NOT NULL,
+    end_date DATETIME NOT NULL,
+    is_active BIT NOT NULL DEFAULT 1,
+    CONSTRAINT fk_discount_vendor FOREIGN KEY (vendor_id) REFERENCES vendor(id),
+    CONSTRAINT fk_discount_product_item FOREIGN KEY (product_item_id) REFERENCES product_item(id),
+    CONSTRAINT chk_dates CHECK (end_date > start_date)
+);
+
+-- 20. cart
+CREATE TABLE cart (
+    id INT IDENTITY(1,1) PRIMARY KEY,
+    user_id INT NOT NULL,
+    product_item_id INT NOT NULL,
+    quantity INT NOT NULL CHECK (quantity > 0),
+    added_at DATETIME NOT NULL DEFAULT GETDATE(),
+    CONSTRAINT fk_cart_user FOREIGN KEY (user_id) REFERENCES [user](id),
+    CONSTRAINT fk_cart_product_item FOREIGN KEY (product_item_id) REFERENCES product_item(id),
+    CONSTRAINT chk_quantity_positive CHECK (quantity > 0)
 );
