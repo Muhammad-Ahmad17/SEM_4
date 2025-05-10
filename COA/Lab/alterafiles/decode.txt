@@ -1,0 +1,160 @@
+--FA23-BCE-013
+--FA23-BCE-113
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.NUMERIC_STD.ALL;
+--use work.MyPackage.all;
+
+entity decodeModule is
+    port (
+        instruction       : in STD_LOGIC_VECTOR (31 downto 0);
+        alu_result        : in STD_LOGIC_VECTOR (31 downto 0);
+        memory_data       : in STD_LOGIC_VECTOR (31 downto 0);
+        register_rs       : out STD_LOGIC_VECTOR (31 downto 0);
+        register_rt       : out STD_LOGIC_VECTOR (31 downto 0);
+        register_rd       : out STD_LOGIC_VECTOR (31 downto 0);
+        immediate         : out STD_LOGIC_VECTOR (31 downto 0);
+        jump_addr         : out STD_LOGIC_VECTOR (31 downto 0);
+        RegDst, RegWrite, MemToReg : in std_logic;
+        reset, clock      : in std_logic
+    );
+end decodeModule;
+
+architecture bhv of decodeModule is
+
+-- a 32-by-32 array having 32 registers and each register is of size 32-bit
+type reg_array is array(0 to 31) of std_logic_vector(31 downto 0);
+
+-- Each register in Reg_File is initialized with its corresponding register number $0-$31(MIPS)
+shared variable Reg_File : reg_array := (
+    X"00000000", -- 0
+    X"00000001", -- 1
+    X"00000002", -- 2
+    X"00000003", -- 3
+    X"00000004", -- 4
+    X"00000005", -- 5
+    X"00000006", -- 6
+    X"00000007", -- 7
+    X"00000008", -- 8
+    X"00000009", -- 9
+    X"0000000A", -- 10
+    X"0000000B", -- 11
+    X"0000000C", -- 12
+    X"0000000D", -- 13
+    X"0000000E", -- 14
+    X"0000000F", -- 15
+    X"00000010", -- 16
+    X"00000011", -- 17
+    X"00000012", -- 18
+    X"00000013", -- 19
+    X"00000014", -- 20
+    X"00000015", -- 21
+    X"00000016", -- 22
+    X"00000017", -- 23
+    X"00000018", -- 24
+    X"00000019", -- 25
+    X"0000001A", -- 26
+    X"0000001B", -- 27
+    X"0000001C", -- 28
+    X"0000001D", -- 29
+    X"0000001E", -- 30
+    X"0000001F"  -- 31
+);
+
+begin
+
+					-- REG WRITE --
+					
+write_reg: process (clock, reset)
+    variable write_value : std_logic_vector (31 downto 0);
+    variable rd, rtype, itype : std_logic_vector (4 downto 0);
+    variable index : integer range 0 to 31;
+begin
+    if reset = '1' then
+        Reg_File := (
+            X"00000000", -- 0
+				X"00000001", -- 1
+				X"00000002", -- 2
+				X"00000003", -- 3
+				X"00000004", -- 4
+				X"00000005", -- 5
+				X"00000006", -- 6
+				X"00000007", -- 7
+				X"00000008", -- 8
+				X"00000009", -- 9
+				X"0000000A", -- 10
+				X"0000000B", -- 11
+				X"0000000C", -- 12
+				X"0000000D", -- 13
+				X"0000000E", -- 14
+				X"0000000F", -- 15
+				X"00000010", -- 16
+				X"00000011", -- 17
+				X"00000012", -- 18
+				X"00000013", -- 19
+				X"00000014", -- 20
+				X"00000015", -- 21
+				X"00000016", -- 22
+				X"00000017", -- 23
+				X"00000018", -- 24
+				X"00000019", -- 25
+				X"0000001A", -- 26
+				X"0000001B", -- 27
+				X"0000001C", -- 28
+				X"0000001D", -- 29
+				X"0000001E", -- 30
+				X"0000001F"  -- 31
+        );
+    elsif rising_edge(clock) then
+        itype := instruction(20 downto 16); -- rt
+        rtype := instruction(15 downto 11); -- rd
+
+        if RegDst = '0' then
+            rd := itype;
+        else
+            rd := rtype;
+        end if;
+
+        if MemToReg = '0' then
+            write_value := alu_result;
+        else
+            write_value := memory_data;
+        end if;
+
+        if RegWrite = '1' then
+            index := to_integer(unsigned(rd));
+            Reg_File(index) := write_value;
+        end if;
+    end if;
+end process write_reg;
+
+
+						-- REG READ --
+
+Register_Read : process (instruction)
+    variable index_rs, index_rt, index_rd : integer range 0 to 31;
+begin
+
+	 -- 
+    index_rs := to_integer(unsigned(instruction(25 downto 21)));
+    index_rt := to_integer(unsigned(instruction(20 downto 16)));
+    index_rd := to_integer(unsigned(instruction(15 downto 11)));
+
+    register_rs <= Reg_File(index_rs);
+    register_rt <= Reg_File(index_rt);
+    register_rd <= Reg_File(index_rd);
+
+    -- immediate sign-extension
+	 -- immediate (15 downto 0) <= instruction(15 downto 0);
+    if instruction(15) = '0' then
+        immediate <= X"0000" & instruction(15 downto 0);
+    else
+        immediate <= X"FFFF" & instruction(15 downto 0);
+    end if;
+
+    -- jump address formation
+    jump_addr <= "000000" & instruction(25 downto 0);
+end process Register_Read;
+
+
+end bhv;

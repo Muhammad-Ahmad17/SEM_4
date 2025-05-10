@@ -8,36 +8,36 @@ use work.MyPackage.all;
 entity fetchModule is
 	port(
 		hex0,hex1,hex2,hex3,hex4,hex5,hex6,hex7 	: out std_logic_vector(6 downto 0);
-		leds 													: out std_logic_vector(3 downto 0);
-		topclock,topreset 								: in std_logic
-	
+		leds 										: out std_logic_vector(3 downto 0);
+		topclock,topreset 							: in std_logic
 	); 
 end fetchModule;
 
-architecture bhv of fetchModule is
 
+architecture bhv of fetchModule is
+	-- TOP INSTRUCTION <- show instruction present in register file
+	-- TOP PC <- show address counter of above information
 	
-	-- TOP INSTRUCTION 
-	-- TOP PC
-	
-	signal top_instruction , top_pcout : std_LOGIC_VECTOR(31 downto 0);
+	signal top_instruction,top_pcout : std_LOGIC_VECTOR(31 downto 0);
 
 begin
 	
+	-- Progaram Counter
 	f1: fetch port map (
         PC_out             => top_pcout,
         instruction        => top_instruction,
         branch_addr        => X"00000000",
         jump_addr          => X"00000000",
-        branch_decision    => '0', 				-- branch_des
-        jump_decision      => '0',   			-- jump_des
+        branch_decision    => '0', 	-- branch_des
+        jump_decision      => '0',  -- jump_des
         reset              => topreset,
         clock              => topclock
-    );
+    );	
 	 leds <= top_pcout(3 downto 0);
 	 
 	 
-u7: sevenSegement port map (
+	 -- Instruction 
+	u7: sevenSegement port map (
         bininput => top_instruction(31 downto 28),
         cathodes => hex7
     );
