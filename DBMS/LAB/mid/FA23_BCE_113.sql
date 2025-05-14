@@ -14,7 +14,7 @@ create table courses(
 	credit_hours int not null
 )
 ----
-
+	
 create table enrollments (
 	student_id int unique not null,
 	course_id int unique not null
