@@ -1,4 +1,4 @@
-# Introduction to Computer Systems
+    # Introduction to Computer Systems
 
 ### Information is Bits + Context
 Computers store and manipulate information as binary data (bits). The interpretation of these bits depends on context, such as whether they represent numbers, characters, or instructions.
