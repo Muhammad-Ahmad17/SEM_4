@@ -1,0 +1,22 @@
+library ieee;
+use std_logic_1164.all;
+
+package my_components is
+
+component ssd is
+Port (
+        input : in  STD_LOGIC_VECTOR(3 downto 0); 
+        segments : out STD_LOGIC_VECTOR(6 downto 0));
+		  
+end component;
+
+component fetch is 
+
+port (
+	pc_out : outstd_logic_vector(31 downto 0);
+	instruction : outstd_logic_vector(31 downto 0);
+	branch_addr,jump_addr : in std_logic_vector( 31 downto 0);
+	branch_decision,jump_decision : in std_logic_vector( 31 downto 0));
+
+end component;
+end my_components;

@@ -1,0 +1,40 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.std_logic_unsigned.all;
+use ieee.numeric_std.all;
+use work.my_components.all;
+
+entity Wrapper is port(
+		hex0, hex1,hex2,hex3,hex4,hex5, hex6, hex7 : out std_logic_vector(6 downto 0);
+		leds : out std_logic_vector(3 downto 0);
+		branch_decision, jump_decision,clock,reset : in std_logic;
+		
+	
+	); end Wrapper;
+	
+	
+architecture behav of Wrapper is 
+
+signal top_instruction, top_pcout : std_logic_vector(31 downto 0);
+
+begin
+
+leds<=top_pcout(3 downto 0);
+
+		U1 : fetch port map ( top_pcout,top_instruction,X"0000003",X"00000007",branch_decision,jump_decision,reset,clk);
+		
+		
+		
+		
+		
+		
+		hex_to_ssd (top_instruction( 3 downto 0),hex0);
+		hex_to_ssd (top_instruction( 4 downto 7),hex1);
+		hex_to_ssd (top_instruction( 8 downto 11),hex2);
+		hex_to_ssd (top_instruction( 12 downto 15),hex3);
+		hex_to_ssd (top_instruction( 16 downto 19),hex4);
+		hex_to_ssd (top_instruction( 20 downto 23),hex5);
+		hex_to_ssd (top_instruction( 24 downto 27),hex6);
+		hex_to_ssd (top_instruction( 28 downto 31),hex7);
+end behav
+

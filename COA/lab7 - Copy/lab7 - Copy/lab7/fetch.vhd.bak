@@ -1,0 +1,61 @@
+library ieee;
+use std_logic_1164.all;
+
+entity fetch is
+port (
+	pc_out : outstd_logic_vector(31 downto 0);
+	instruction : outstd_logic_vector(31 downto 0);
+	branch_addr,jump_addr : in std_logic_vector( 31 downto 0);
+	branch_decision,jump_decision : in std_logic_vector( 31 downto 0));
+
+end fetch;
+
+architecture behav of fetch is 
+
+type mem_array is array(0 upto 15) of std_logic_vector(31 downto0);
+begin
+process
+varaiable mem:mem_array := (
+			
+			X"6c220000",
+			X"8c640001"
+			X"00822022"
+			X"ac640000"
+			X"1022fffa"
+			X"00612064"
+			X"08000000"
+			X"00000000"
+			);
+			
+varaiable PC : std_logic_vector(31 downto 0)
+variable index :integer := 0 ;
+begin
+
+if reset ='1' then
+	
+	PC:=X"00000000";
+	PC_out<=X"00000000";
+	instruction<=X"00000000";
+
+elsif(clk'event and  clk ='1' ) then
+	if (branch_desicion ='1') 
+	PC := branch_addr;
+	elsif(jump_decision ='1') then
+	PC:=jump_addr;
+	
+	end if;
+end if;
+	
+index := to_integer(PC(3 ddownto 0));
+
+PC:= PC + X"1";
+PC_out <=PC;
+instruction <=mem(index);
+end process;
+end behav;
+			
+
+
+	
+
+	

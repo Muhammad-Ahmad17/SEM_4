@@ -1,0 +1,101 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity decode is
+port (
+    instruction : in std_logic_vector(31 downto 0);
+    clock       : in std_logic;
+    reset       : in std_logic;
+    RegDst      : in std_logic;
+    RegWrite    : in std_logic;
+    MemToReg    : in std_logic;
+    memory_data : in std_logic_vector(31 downto 0);
+    alu_result  : in std_logic_vector(31 downto 0);
+    
+    register_rs : out std_logic_vector(31 downto 0);
+    register_rt : out std_logic_vector(31 downto 0);
+    register_rd : out std_logic_vector(31 downto 0);
+    immediate   : out std_logic_vector(31 downto 0);
+    jump_addr   : out std_logic_vector(31 downto 0)
+);
+end decode;
+
+architecture behavioral of decode is
+    type reg_array is array (0 to 31) of std_logic_vector(31 downto 0);
+    shared variable RegFile: reg_array := (
+        X"00000000",   
+        X"11111111",   
+        X"22222222",
+        X"33333333",
+        X"44444444",
+        others => X"01010101");
+begin
+    reg_write: process(reset, clock)
+        variable write_value : std_logic_vector(31 downto 0);
+        variable write_addr : std_logic_vector(4 downto 0);
+        variable index : integer := 0;
+    begin
+        if rising_edge(clock) then
+          
+            if reset = '1' then
+                RegFile := (            
+                    X"00000000",
+                    X"11111111", 
+                    X"22222222",
+                    X"33333333",
+                    X"44444444",
+                    others => X"01010101");
+            else
+                if RegDst = '0' then
+                    write_addr := instruction(20 downto 16); 
+                else
+                    write_addr := instruction(15 downto 11); 
+                end if;
+                
+                
+                if RegWrite = '1' then
+                    if MemToReg = '1' then
+                        write_value := memory_data;
+                    else
+                        write_value := alu_result;
+                    end if;
+                    
+                    if to_integer(unsigned(write_addr)) /= 0 then 
+                        RegFile(to_integer(unsigned(write_addr))) := write_value;
+                    end if;
+                end if;
+            end if;
+        end if;
+    end process reg_write;
+
+    reg_read : process(instruction)
+        variable rt, rs, imm, rd : std_logic_vector(31 downto 0);
+        variable addr1, addr2, addr_rd : integer := 0;
+    begin
+	 
+        addr1 := to_integer(unsigned(instruction(25 downto 21))); 
+        addr2 := to_integer(unsigned(instruction(20 downto 16))); 
+        addr_rd := to_integer(unsigned(instruction(15 downto 11)));
+        
+        rs := RegFile(addr1);
+        rt := RegFile(addr2);
+        rd := RegFile(addr_rd);
+        
+        imm(15 downto 0) := instruction(15 downto 0);
+        if instruction(15) = '1' then
+            imm(31 downto 16) := x"ffff";
+        else
+            imm(31 downto 16) := x"0000";
+        end if;
+        
+        
+        --jump_addr <= "0000" & instruction(25 downto 0) & "00";
+        jump_addr <= (31 downto 26 => '0') & instruction(25 downto 0);
+
+        register_rs <= rs;
+        register_rt <= rt;
+        register_rd <= rd;
+        immediate <= imm;
+    end process reg_read;
+end behavioral;
