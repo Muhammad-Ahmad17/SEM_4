@@ -23,3 +23,6 @@ subplot(2,1,2);
 plot(t, y1_individual, 'b--', 'LineWidth', 2);
 title('System 1: y = 2x Applied to Individual Inputs then Added');
 ylim([-1 11]); grid on;
+
+
+

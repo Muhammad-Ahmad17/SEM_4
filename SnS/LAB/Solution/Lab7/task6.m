@@ -24,4 +24,4 @@ y = conv(x1,x2)*.01;
 subplot(2,1,2)
 plot(0:.01:8,y);
 
-title('with conv')
+title('with conv')	

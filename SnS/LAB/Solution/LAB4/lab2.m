@@ -2,9 +2,10 @@ clc
 clear
 close all
 
-subplot(311)
 n = -1:3;
 x = [0 1 2 3 4];
+subplot(311)
+
 stem(n,x);%for discrite time
 legend('x[n]')
 

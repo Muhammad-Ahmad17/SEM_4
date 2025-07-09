@@ -1,0 +1,41 @@
+PME PAPER
+
+Q1:
+	A:
+		list down sample space also sub sample space and then check mutually exclusive and collectivley exaustive 
+	B:
+		complete the probability model
+		
+Q2:
+	A:
+		cdf given (x+1)/2
+		find pdf and relevent things
+	B: 
+		exponentional random variable 
+		find p[x>E[X]] and p[x>2E[X]]
+
+Q3:
+	A:
+		joint probability model find mgfs and relevent things 
+
+Q4:
+	A: 
+		central limit theorm
+	B: 
+		sum of random variable x=y+z
+
+Q5:
+	A: 
+		indicator random variable 
+			E[X],VAR[X],sample mean = var[X]/n
+	B:
+		chebyshev inequality to find n using 𝛼
+
+​
+ 
+​
+ 
+
+		
+		
+		

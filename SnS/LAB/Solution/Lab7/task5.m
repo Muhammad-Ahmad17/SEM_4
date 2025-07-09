@@ -31,3 +31,5 @@ subplot(4,1,4)
 %d
 plot(w,imag(X))
 legend('imaginary')
+
+

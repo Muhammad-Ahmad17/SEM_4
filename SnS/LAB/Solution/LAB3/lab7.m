@@ -26,3 +26,5 @@ disp(Px);  % Display power
 t_vals = 0:0.01:2;  % One period, from t=0 to t=2
 x_vals = double(subs(x, t, t_vals));  % Substitute symbolic expression into the time vector
 
+
+ 
